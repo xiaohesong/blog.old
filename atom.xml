@@ -96,9 +96,9 @@
     </summary>
     
     
-      <category term="Interview" scheme="http://yoursite.com/tags/Interview/"/>
-    
       <category term="ruby" scheme="http://yoursite.com/tags/ruby/"/>
+    
+      <category term="Interview" scheme="http://yoursite.com/tags/Interview/"/>
     
   </entry>
   
