@@ -83,6 +83,8 @@
 
 
 
+  
+
 
   <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml" />
 
@@ -98,13 +100,14 @@
 
 <meta name="description" content="相信自己,认为自己是对的,那就继续下去!">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:title" content="tags">
+<meta property="og:url" content="http://yoursite.com/tags/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="相信自己,认为自己是对的,那就继续下去!">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-04T06:31:54.646Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="tags">
 <meta name="twitter:description" content="相信自己,认为自己是对的,那就继续下去!">
 
 
@@ -134,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/tags/"/>
 
 
 
 
 
-  <title>Hexo</title>
+  <title>tags | Hexo</title>
   
 
 
@@ -175,9 +178,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -294,174 +295,44 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/04/build-hexo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xiaohesong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/my_logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
     
+    
+    <div class="post-block page">
       <header class="post-header">
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/04/build-hexo/" itemprop="url">Build Hexo</a></h1>
-        
+	<h1 class="post-title" itemprop="name headline">tags</h1>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-04T13:58:49+08:00">
-                2017-08-04
-              </time>
-            
 
-            
 
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/04/build-hexo/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count fb-comments-count" data-href="http://yoursite.com/2017/08/04/build-hexo/" itemprop="commentCount">0</span> comments
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/08/04/build-hexo/" class="leancloud_visitors" data-flag-title="Build Hexo">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+</header>
 
       
       
-
       
+      <div class="post-body">
         
-          
-            <h1 id="动手搭建基于Hexo的Blog"><a href="#动手搭建基于Hexo的Blog" class="headerlink" title="动手搭建基于Hexo的Blog"></a>动手搭建基于Hexo的Blog</h1><h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><ul>
-<li><a href="https://github.com/creationix/nvm#install-script" target="_blank" rel="external">node的依赖.</a></li>
-</ul>
-<h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mkdir &lt;github-name&gt;.github.io -p</div><div class="line"><span class="built_in">cd</span> &lt;github-name&gt;.github.io</div><div class="line">sudo npm install -g hexo-cli</div></pre></td></tr></table></figure>
-<h3 id="初始化博客框架"><a href="#初始化博客框架" class="headerlink" title="初始化博客框架"></a>初始化博客框架</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo init</div><div class="line">npm install</div></pre></td></tr></table></figure>
-<h3 id="初次展现"><a href="#初次展现" class="headerlink" title="初次展现"></a>初次展现</h3><p>经过上面简单的步骤,已经把基本的博客框架给搭建好了.可以查看下效果.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo s</div></pre></td></tr></table></figure>
-<p>然后输入 <code>localhost:4000</code>可以查看下基本的效果.<br>不过,这不是我想要的.</p>
-<h2 id="美化操作"><a href="#美化操作" class="headerlink" title="美化操作"></a>美化操作</h2><h3 id="主题选择"><a href="#主题选择" class="headerlink" title="主题选择"></a>主题选择</h3><p>下载主题到<code>themes</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> https://github.com/iissnan/hexo-theme-next themes/next</div></pre></td></tr></table></figure>
-<p>这样就把主题搞定了.不过要配置下.在<code>&lt;github-name.github.io&gt;</code>的<code>_config.yml</code>中找到<code>theme</code>.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">theme: next <span class="comment">#注意, 默认是landscape</span></div></pre></td></tr></table></figure></p>
-<p>这里可配置文件选项较多,<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">请查看文档</a></p>
-<h4 id="更多配置"><a href="#更多配置" class="headerlink" title="更多配置"></a><a href="http://theme-next.iissnan.com/" target="_blank" rel="external">更多配置</a></h4><h2 id="提交到git"><a href="#提交到git" class="headerlink" title="提交到git"></a>提交到git</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git push origin master</div><div class="line">hexo g</div><div class="line">hexo d</div></pre></td></tr></table></figure>
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><h4 id="git-push到github-page之后出现404-邮件反馈"><a href="#git-push到github-page之后出现404-邮件反馈" class="headerlink" title="git push到github page之后出现404.邮件反馈:"></a><code>git push</code>到<code>github page</code>之后出现404.邮件反馈:</h4><ul>
-<li>First<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">The page build completed successfully, but returned the following warning for the `master` branch:</div><div class="line"></div><div class="line">You are attempting to use a Jekyll theme, "next", which is not supported by GitHub Pages. Please visit https://pages.github.com/themes/ for a list of supported themes. If you are using the "theme" configuration variable for something other than a Jekyll theme, we recommend you rename this variable throughout your site. For more information, see https://help.github.com/articles/adding-a-jekyll-theme-to-your-github-pages-site/.</div><div class="line"></div><div class="line">For information on troubleshooting Jekyll see:</div><div class="line"></div><div class="line">  https://help.github.com/articles/troubleshooting-jekyll-builds</div><div class="line"></div><div class="line">If you have any questions you can contact us by replying to this email.</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>这个是要指定下, <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">可以参考</a>.</p>
-<ul>
-<li>Second</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">The page build failed for the `master` branch with the following error:</div><div class="line"></div><div class="line">The tag `fancybox` on line 77 in `themes/landscape/README.md` is not a recognized Liquid tag. For more information, see https://help.github.com/articles/page-build-failed-unknown-tag-error/.</div><div class="line"></div><div class="line">For information on troubleshooting Jekyll see:</div><div class="line"></div><div class="line">  https://help.github.com/articles/troubleshooting-jekyll-builds</div><div class="line"></div><div class="line">If you have any questions you can contact us by replying to this email.</div></pre></td></tr></table></figure>
-<p>这个也比较好解决的.去<code>themes</code>下的<code>landscape</code>删除<code>README.md</code>文件.</p>
-
-          
         
+          <div class="tag-cloud">
+            <div class="tag-cloud-title">
+                目前共计 1 个标签
+            </div>
+            <div class="tag-cloud-tags">
+              <a href="/tags/hexo/" style="font-size: 12px; color: #ccc">hexo</a>
+            </div>
+          </div>
+        
+      </div>
+      
+      
       
     </div>
     
     
     
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -469,6 +340,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -684,6 +566,18 @@
       <script id="dsq-count-scr" src="https://issue.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/tags/index.html';
+          this.page.identifier = 'tags/index.html';
+          this.page.title = 'tags';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://issue.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   
