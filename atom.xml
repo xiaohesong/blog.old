@@ -3,25 +3,25 @@
   <title>Here</title>
   <subtitle>xiaohesong&#39;s blogs</subtitle>
   <link href="/atom.xml" rel="self"/>
-  
+
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-04T07:29:48.883Z</updated>
+  <updated>2017-08-04T08:52:38.292Z</updated>
   <id>http://yoursite.com/</id>
-  
+
   <author>
     <name>xiaohesong</name>
-    
+
   </author>
-  
+
   <generator uri="http://hexo.io/">Hexo</generator>
-  
+
   <entry>
     <title>使用monit监控rails应用</title>
     <link href="http://yoursite.com/2017/08/04/%E4%BD%BF%E7%94%A8monit%E7%9B%91%E6%8E%A7rails%E5%BA%94%E7%94%A8/"/>
     <id>http://yoursite.com/2017/08/04/使用monit监控rails应用/</id>
     <published>2017-08-04T07:28:51.000Z</published>
-    <updated>2017-08-04T07:29:48.883Z</updated>
-    
+    <updated>2017-08-04T08:52:38.292Z</updated>
+
     <content type="html"><![CDATA[<p>monit的安装，ubuntu可以直接安装</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install monit</div></pre></td></tr></table></figure>
 <p>这样就安装好了．然后我们看下配置文件,在 <code>/etc/monit/monitrc</code> :</p>
@@ -33,30 +33,30 @@
 <p>-　然后重启一下</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo service monit restart</div></pre></td></tr></table></figure>
 ]]></content>
-    
+
     <summary type="html">
-    
+
       &lt;p&gt;monit的安装，ubuntu可以直接安装&lt;/p&gt;
 &lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td clas
-    
+
     </summary>
-    
-    
+
+
       <category term="运维" scheme="http://yoursite.com/tags/%E8%BF%90%E7%BB%B4/"/>
-    
+
       <category term="rails" scheme="http://yoursite.com/tags/rails/"/>
-    
+
       <category term="monit" scheme="http://yoursite.com/tags/monit/"/>
-    
+
   </entry>
-  
+
   <entry>
     <title>Ruby面试整理</title>
     <link href="http://yoursite.com/2017/08/04/Ruby%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
     <id>http://yoursite.com/2017/08/04/Ruby面试整理/</id>
     <published>2017-08-04T07:23:18.000Z</published>
-    <updated>2017-08-04T07:29:48.883Z</updated>
-    
+    <updated>2017-08-04T08:52:38.292Z</updated>
+
     <content type="html"><![CDATA[<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>昨天去面试了一家公司，做了一天的车，基本上是蒙蔽状态。<br>今天有时间重新思考了一下。<br>2017-02-09</p>
 <h4 id="题1"><a href="#题1" class="headerlink" title="题1:"></a>题1:</h4><ul>
 <li>题1（用each实现map）</li>
@@ -87,28 +87,27 @@
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">missing_number</span><span class="params">(array)</span></span></div><div class="line">  max = array.max</div><div class="line">  min = array.min</div><div class="line">  (min .. max).to_a - array</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a = (<span class="number">1</span> .. <span class="number">1000</span>).to_a</div><div class="line">a.delete((<span class="number">1</span> .. <span class="number">1000</span>).to_a.sample)</div><div class="line">puts missing_number(a)</div></pre></td></tr></table></figure>
 ]]></content>
-    
+
     <summary type="html">
-    
+
       &lt;h3 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h3&gt;&lt;p&gt;昨天去面试了一家公司，做了一天的车，基本上是蒙蔽状态。&lt;br&gt;今天有时间重新思考了一下。&lt;br&gt;2017-02-09&lt;/p&gt;
 &lt;h4 id=
-    
+
     </summary>
-    
-    
-      <category term="ruby" scheme="http://yoursite.com/tags/ruby/"/>
-    
+
+
       <category term="Interview" scheme="http://yoursite.com/tags/Interview/"/>
-    
+
+      <category term="ruby" scheme="http://yoursite.com/tags/ruby/"/>
   </entry>
-  
+
   <entry>
     <title>Build Hexo</title>
     <link href="http://yoursite.com/2017/08/04/build-hexo/"/>
     <id>http://yoursite.com/2017/08/04/build-hexo/</id>
     <published>2017-08-04T05:58:49.000Z</published>
-    <updated>2017-08-04T07:17:15.803Z</updated>
-    
+    <updated>2017-08-04T08:52:38.292Z</updated>
+
     <content type="html"><![CDATA[<h1 id="动手搭建基于Hexo的Blog"><a href="#动手搭建基于Hexo的Blog" class="headerlink" title="动手搭建基于Hexo的Blog"></a>动手搭建基于Hexo的Blog</h1><h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><ul>
 <li><a href="https://github.com/creationix/nvm#install-script" target="_blank" rel="external">node的依赖.</a></li>
 </ul>
@@ -133,16 +132,16 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">The page build failed for the `master` branch with the following error:</div><div class="line"></div><div class="line">The tag `fancybox` on line 77 in `themes/landscape/README.md` is not a recognized Liquid tag. For more information, see https://help.github.com/articles/page-build-failed-unknown-tag-error/.</div><div class="line"></div><div class="line">For information on troubleshooting Jekyll see:</div><div class="line"></div><div class="line">  https://help.github.com/articles/troubleshooting-jekyll-builds</div><div class="line"></div><div class="line">If you have any questions you can contact us by replying to this email.</div></pre></td></tr></table></figure>
 <p>这个也比较好解决的.去<code>themes</code>下的<code>landscape</code>删除<code>README.md</code>文件.</p>
 ]]></content>
-    
+
     <summary type="html">
-    
+
       &lt;h1 id=&quot;动手搭建基于Hexo的Blog&quot;&gt;&lt;a href=&quot;#动手搭建基于Hexo的Blog&quot; class=&quot;headerlink&quot; title=&quot;动手搭建基于Hexo的Blog&quot;&gt;&lt;/a&gt;动手搭建基于Hexo的Blog&lt;/h1&gt;&lt;h2 id=&quot;基本操作&quot;&gt;&lt;a href
-    
+
     </summary>
-    
-    
+
+
       <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
-    
+
   </entry>
-  
+
 </feed>
