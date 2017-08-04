@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="运维,rails,monit," />
 
 
 
@@ -96,16 +96,18 @@
 
 
 
-<meta name="description" content="相信自己,认为自己是对的,那就继续下去!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="monit的安装，ubuntu可以直接安装 1sudo apt-get install monit 这样就安装好了．然后我们看下配置文件,在 /etc/monit/monitrc : 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585">
+<meta name="keywords" content="运维,rails,monit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用monit监控rails应用">
+<meta property="og:url" content="http://yoursite.com/2017/08/04/使用monit监控rails应用/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="相信自己,认为自己是对的,那就继续下去!">
+<meta property="og:description" content="monit的安装，ubuntu可以直接安装 1sudo apt-get install monit 这样就安装好了．然后我们看下配置文件,在 /etc/monit/monitrc : 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-04T07:29:48.883Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="相信自己,认为自己是对的,那就继续下去!">
+<meta name="twitter:title" content="使用monit监控rails应用">
+<meta name="twitter:description" content="monit的安装，ubuntu可以直接安装 1sudo apt-get install monit 这样就安装好了．然后我们看下配置文件,在 /etc/monit/monitrc : 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585">
 
 
 
@@ -134,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/04/使用monit监控rails应用/"/>
 
 
 
 
 
-  <title>Hexo</title>
+  <title>使用monit监控rails应用 | Hexo</title>
   
 
 
@@ -175,9 +177,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -294,9 +294,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -326,9 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/04/使用monit监控rails应用/" itemprop="url">使用monit监控rails应用</a></h1>
+          <h1 class="post-title" itemprop="name headline">使用monit监控rails应用</h1>
         
 
         <div class="post-meta">
@@ -399,9 +397,7 @@
       
 
       
-        
-          
-            <p>monit的安装，ubuntu可以直接安装</p>
+        <p>monit的安装，ubuntu可以直接安装</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install monit</div></pre></td></tr></table></figure>
 <p>这样就安装好了．然后我们看下配置文件,在 <code>/etc/monit/monitrc</code> :</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">##############################################################################</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Monit control file</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">##############################################################################</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">#</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Comments begin with a '#' and extend through the end of the line. Keywords</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># are case insensitive. All path's MUST BE FULLY QUALIFIED, starting with '/'.</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">#</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Below you will find examples of some frequently used statements. For</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># information about the control file and a complete list of statements and</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># options, please have a look in the Monit manual.</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">#</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">#</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">##############################################################################</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Global section</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">##############################################################################</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">#</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Start Monit in the background (run as a daemon):</span></span></div><div class="line"><span class="meta">#</span><span class="bash"></span></div><div class="line">  set daemon 30           # check services at 2-minute intervals, current is 30 second</div><div class="line"><span class="meta">#</span><span class="bash">   with start delay 240    <span class="comment"># optional: delay the first check by 4-minutes (by</span></span></div><div class="line"><span class="meta">#</span><span class="bash">                           <span class="comment"># default Monit check immediately after Monit start)</span></span></div><div class="line"><span class="meta">#</span><span class="bash"></span></div><div class="line"><span class="meta">#</span><span class="bash"></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Set syslog logging with the 'daemon' facility. If the FACILITY option is</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># omitted, Monit will use 'user' facility by default. If you want to log to</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># a standalone log file instead, specify the full path to the log file</span></span></div><div class="line"><span class="meta">#</span><span class="bash"></span></div><div class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">set</span> logfile syslog facility log_daemon                       </span></div><div class="line">  set logfile /var/log/monit.log</div><div class="line"></div><div class="line"><span class="meta"> #</span><span class="bash">　下面的是163的邮箱服务器,请注意端口是ssl或者非ssl情况.</span></div><div class="line"><span class="meta"> #</span><span class="bash"> <span class="built_in">set</span> mailserver smtp.163.com username <span class="string">"name@163.com"</span> password <span class="string">"pwd"</span> using sslv3</span></div><div class="line"></div><div class="line"><span class="meta">  #</span><span class="bash"> 下面的这个是万网的邮箱服务器</span></div><div class="line">   set mailserver smtp.mxhichina.com username "name@domain.com" password "pwd" using sslv3  with timeout 30 seconds</div><div class="line"><span class="meta">   #</span><span class="bash"> 这个是邮件接收者</span></div><div class="line">   set alert receive@mail.com</div><div class="line"></div><div class="line"><span class="meta">   #</span><span class="bash"> 这个是邮件格式，可以自己定义.</span></div><div class="line">   set mail-format &#123;</div><div class="line">        from: name@domain.com</div><div class="line">        subject: monit alert --  $EVENT $SERVICE</div><div class="line">        message: $EVENT Service $SERVICE</div><div class="line">                   Date:        $DATE</div><div class="line">                   Action:      $ACTION</div><div class="line">                   Host:        $HOST</div><div class="line">                   Description: $DESCRIPTION</div><div class="line"></div><div class="line">              Your faithful employee,</div><div class="line">              Monit</div><div class="line">       &#125;</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Set the location of the Monit id file which stores the unique id for the</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Monit instance. The id is generated and stored on first Monit start. By</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># default the file is placed in $HOME/.monit.id.</span></span></div><div class="line"><span class="meta">#</span><span class="bash"></span></div><div class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">set</span> idfile /var/.monit.id</span></div><div class="line">  set idfile /var/lib/monit/id</div><div class="line"><span class="meta">#</span><span class="bash"></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Set the location of the Monit state file which saves monitoring states</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># on each cycle. By default the file is placed in $HOME/.monit.state. If</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># the state file is stored on a persistent filesystem, Monit will recover</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># the monitoring state across reboots. If it is on temporary filesystem, the</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># state will be lost on reboot which may be convenient in some situations.</span></span></div><div class="line"><span class="meta">#</span><span class="bash"></span></div><div class="line">  set statefile /var/lib/monit/state</div><div class="line"><span class="meta">#</span><span class="bash"></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Set the list of mail servers for alert delivery. Multiple servers may be</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># specified using a comma separator. If the first mail server fails, Monit</span></span></div><div class="line"><span class="meta">#</span><span class="bash"> will use the second mail server <span class="keyword">in</span> the list and so on. By default Monit uses</span></div><div class="line"><span class="meta">#</span><span class="bash"> port 25 - it is possible to override this with the PORT option.</span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># By default Monit will drop alert events if no mail servers are available.</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># If you want to keep the alerts for later delivery retry, you can use the</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># EVENTQUEUE statement. The base directory where undelivered alerts will be</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># stored is specified by the BASEDIR option. You can limit the maximal queue</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># size using the SLOTS option (if omitted, the queue is limited by space</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># available in the back end filesystem).</span></span></div><div class="line"><span class="meta">#</span><span class="bash"></span></div><div class="line">  set eventqueue</div><div class="line">      basedir /var/lib/monit/events # set the base directory where events will be stored</div><div class="line">      slots 100                     # optionally limit the queue size</div><div class="line"><span class="meta">#</span><span class="bash"></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Monit by default uses the following format for alerts if the the mail-format</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># statement is missing::</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># --8&lt;--</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># --8&lt;--</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">#</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># You can override this message format or parts of it, such as subject</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># or sender using the MAIL-FORMAT statement. Macros such as $DATE, etc.</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># are expanded at runtime. For example, to override the sender, use:</span></span></div><div class="line"><span class="meta">#</span><span class="bash"></span></div><div class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">set</span> mail-format &#123; from: monit@foo.bar &#125;</span></div><div class="line"><span class="meta">#</span><span class="bash"> 监控网页应用</span></div><div class="line">check system domain.com</div><div class="line">    if loadavg (1min) &gt; 4 then alert</div><div class="line">    if loadavg (5min) &gt; 2 then alert</div><div class="line">    if memory usage &gt; 75% then alert</div><div class="line">    if swap usage &gt; 25% then alert</div><div class="line">    if cpu usage (user) &gt; 70% then alert</div><div class="line">    if cpu usage (system) &gt; 30% then alert</div><div class="line">    if cpu usage (wait) &gt; 20% then alert</div><div class="line"><span class="meta">#</span><span class="bash"></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># You can set alert recipients whom will receive alerts if/when a</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># service defined in this file has errors. Alerts may be restricted on</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># events by using a filter as in the second example below.</span></span></div><div class="line"><span class="meta">#</span><span class="bash"></span></div><div class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">set</span> alert didmehh@163.com                       <span class="comment"># receive all alerts</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Do not alert when Monit start,stop or perform a user initiated action</span></span></div><div class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">set</span> alert manager@foo.bar not on &#123; instance, action &#125;</span></div><div class="line"><span class="meta">#</span><span class="bash"></span></div><div class="line"><span class="meta">#</span><span class="bash"></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Monit has an embedded web server which can be used to view status of</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># services monitored and manage services from a web interface. See the</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Monit Wiki if you want to enable SSL for the web server.</span></span></div><div class="line"><span class="meta">#</span><span class="bash"> 监控情况在网页上可视</span></div><div class="line"> set httpd port 2812 and</div><div class="line"><span class="meta">#</span><span class="bash">    use address localhost  <span class="comment"># only accept connection from localhost</span></span></div><div class="line"><span class="meta">#</span><span class="bash">    allow localhost        <span class="comment"># allow localhost to connect to the server and</span></span></div><div class="line"><span class="meta">#</span><span class="bash">    allow admin:monit      <span class="comment"># require user 'admin' with password 'monit'</span></span></div><div class="line">     allow admin:monit           # allow users of group 'monit' to connect (rw)</div><div class="line"><span class="meta">#</span><span class="bash">    allow @users <span class="built_in">readonly</span>  <span class="comment"># allow users of group 'users' to connect readonly</span></span></div><div class="line"><span class="meta">#</span><span class="bash"></span></div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> monit postgresql</span></div><div class="line">check process web_postgresql with pidfile /var/run/postgresql/9.3-main.pid</div><div class="line">   start program = "/etc/init.d/postgresql start" with timeout 60 seconds</div><div class="line">   stop program = "/etc/init.d/postgresql stop"</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> monit nginx</span></div><div class="line">check process web_nginx with pidfile /run/nginx.pid</div><div class="line">   start program = "/etc/init.d/nginx start" with timeout 60 seconds</div><div class="line">   stop program = "/etc/init.d/nginx stop"</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> monit redis</span></div><div class="line">check process web_redis with pidfile /var/run/redis_server.pid</div><div class="line">  start program = "/etc/init.d/redis_server start" with timeout 60 seconds</div><div class="line">  stop  program = "/etc/init.d/redis_server stop"</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> monit puma</span></div><div class="line">check process web_puma with pidfile /home/user/www/app/shared/tmp/pids/puma.pid</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> monit sidekiq</span></div><div class="line">check process web_sidekiq with pidfile /home/user/www/app/shared/tmp/pids/sidekiq.pid</div><div class="line"><span class="meta">#</span><span class="bash"> 监控硬盘</span></div><div class="line">check filesystem datafs with path /dev/xvda1</div><div class="line"> start program  = "/bin/mount /data"</div><div class="line"> stop program  = "/bin/umount /data"</div><div class="line"> if failed permission 660 then unmonitor</div><div class="line"> if failed uid root then unmonitor</div><div class="line"> if failed gid disk then unmonitor</div><div class="line"> if space usage &gt; 80% for 5 times within 15 cycles then alert</div><div class="line"> if space usage &gt; 99% then stop</div><div class="line"> if inode usage &gt; 30000 then alert</div><div class="line"> if inode usage &gt; 99% then stop</div><div class="line"> group server</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> 监控home空间</span></div><div class="line"><span class="meta">#</span><span class="bash">check device home with path /home/pinee</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> SPACE usage &gt; 0% <span class="keyword">then</span> alert</span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">##############################################################################</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Services</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">##############################################################################</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">#</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Check general system resources such as load average, cpu and memory</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># usage. Each test specifies a resource, conditions and the action to be</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># performed should a test fail.</span></span></div><div class="line"><span class="meta">#</span><span class="bash"></span></div><div class="line"><span class="meta">#</span><span class="bash">  check system myhost.mydomain.tld</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> loadavg (1min) &gt; 4 <span class="keyword">then</span> alert</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> loadavg (5min) &gt; 2 <span class="keyword">then</span> alert</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> memory usage &gt; 75% <span class="keyword">then</span> alert</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> swap usage &gt; 25% <span class="keyword">then</span> alert</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> cpu usage (user) &gt; 70% <span class="keyword">then</span> alert</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> cpu usage (system) &gt; 30% <span class="keyword">then</span> alert</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> cpu usage (<span class="built_in">wait</span>) &gt; 20% <span class="keyword">then</span> alert</span></div><div class="line"><span class="meta">#</span><span class="bash"></span></div><div class="line"><span class="meta">#</span><span class="bash">    </span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Check if a file exists, checksum, permissions, uid and gid. In addition</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># to alert recipients in the global section, customized alert can be sent to</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># additional recipients by specifying a local alert handler. The service may</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># be grouped using the GROUP option. More than one group can be specified by</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># repeating the 'group name' statement.</span></span></div><div class="line"><span class="meta">#</span><span class="bash">    </span></div><div class="line"><span class="meta">#</span><span class="bash">  check file apache_bin with path /usr/<span class="built_in">local</span>/apache/bin/httpd</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> failed checksum and</span></div><div class="line"><span class="meta">#</span><span class="bash">       expect the sum 8f7f419955cefa0b33a2ba316cba3659 <span class="keyword">then</span> unmonitor</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> failed permission 755 <span class="keyword">then</span> unmonitor</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> failed uid root <span class="keyword">then</span> unmonitor</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> failed gid root <span class="keyword">then</span> unmonitor</span></div><div class="line"><span class="meta">#</span><span class="bash">    alert security@foo.bar on &#123;</span></div><div class="line"><span class="meta">#</span><span class="bash">           checksum, permission, uid, gid, unmonitor</span></div><div class="line"><span class="meta">#</span><span class="bash">        &#125; with the mail-format &#123; subject: Alarm! &#125;</span></div><div class="line"><span class="meta">#</span><span class="bash">    group server</span></div><div class="line"><span class="meta">#</span><span class="bash"></span></div><div class="line"><span class="meta">#</span><span class="bash">    </span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Check that a process is running, in this case Apache, and that it respond</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># to HTTP and HTTPS requests. Check its resource usage such as cpu and memory,</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># and number of children. If the process is not running, Monit will restart</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># it by default. In case the service is restarted very often and the</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># problem remains, it is possible to disable monitoring using the TIMEOUT</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># statement. This service depends on another service (apache_bin) which</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># is defined above.</span></span></div><div class="line"><span class="meta">#</span><span class="bash">    </span></div><div class="line"><span class="meta">#</span><span class="bash">  check process apache with pidfile /usr/<span class="built_in">local</span>/apache/logs/httpd.pid</span></div><div class="line"><span class="meta">#</span><span class="bash">    start program = <span class="string">"/etc/init.d/httpd start"</span> with timeout 60 seconds</span></div><div class="line"><span class="meta">#</span><span class="bash">    stop program  = <span class="string">"/etc/init.d/httpd stop"</span></span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> cpu &gt; 60% <span class="keyword">for</span> 2 cycles <span class="keyword">then</span> alert</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> cpu &gt; 80% <span class="keyword">for</span> 5 cycles <span class="keyword">then</span> restart</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> totalmem &gt; 200.0 MB <span class="keyword">for</span> 5 cycles <span class="keyword">then</span> restart</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> children &gt; 250 <span class="keyword">then</span> restart</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> loadavg(5min) greater than 10 <span class="keyword">for</span> 8 cycles <span class="keyword">then</span> stop</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> failed host www.tildeslash.com port 80 protocol http</span></div><div class="line"><span class="meta">#</span><span class="bash">       and request <span class="string">"/somefile.html"</span></span></div><div class="line"><span class="meta">#</span><span class="bash">       <span class="keyword">then</span> restart</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> failed port 443 <span class="built_in">type</span> tcpssl protocol http</span></div><div class="line"><span class="meta">#</span><span class="bash">       with timeout 15 seconds</span></div><div class="line"><span class="meta">#</span><span class="bash">       <span class="keyword">then</span> restart</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> 3 restarts within 5 cycles <span class="keyword">then</span> timeout</span></div><div class="line"><span class="meta">#</span><span class="bash">    depends on apache_bin</span></div><div class="line"><span class="meta">#</span><span class="bash">    group server</span></div><div class="line"><span class="meta">#</span><span class="bash">    </span></div><div class="line"><span class="meta">#</span><span class="bash">    </span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Check filesystem permissions, uid, gid, space and inode usage. Other services,</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># such as databases, may depend on this resource and an automatically graceful</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># stop may be cascaded to them before the filesystem will become full and data</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># lost.</span></span></div><div class="line"><span class="meta">#</span><span class="bash"></span></div><div class="line"><span class="meta">#</span><span class="bash">  check filesystem datafs with path /dev/sdb1</span></div><div class="line"><span class="meta">#</span><span class="bash">    start program  = <span class="string">"/bin/mount /data"</span></span></div><div class="line"><span class="meta">#</span><span class="bash">    stop program  = <span class="string">"/bin/umount /data"</span></span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> failed permission 660 <span class="keyword">then</span> unmonitor</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> failed uid root <span class="keyword">then</span> unmonitor</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> failed gid disk <span class="keyword">then</span> unmonitor</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> space usage &gt; 80% <span class="keyword">for</span> 5 <span class="built_in">times</span> within 15 cycles <span class="keyword">then</span> alert</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> space usage &gt; 99% <span class="keyword">then</span> stop</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> inode usage &gt; 30000 <span class="keyword">then</span> alert</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> inode usage &gt; 99% <span class="keyword">then</span> stop</span></div><div class="line"><span class="meta">#</span><span class="bash">    group server</span></div><div class="line"><span class="meta">#</span><span class="bash"></span></div><div class="line"><span class="meta">#</span><span class="bash"></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Check a file's timestamp. In this example, we test if a file is older</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># than 15 minutes and assume something is wrong if its not updated. Also,</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># if the file size exceed a given limit, execute a script</span></span></div><div class="line"><span class="meta">#</span><span class="bash"></span></div><div class="line"><span class="meta">#</span><span class="bash">  check file database with path /data/mydatabase.db</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> failed permission 700 <span class="keyword">then</span> alert</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> failed uid data <span class="keyword">then</span> alert</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> failed gid data <span class="keyword">then</span> alert</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> timestamp &gt; 15 minutes <span class="keyword">then</span> alert</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> size &gt; 100 MB <span class="keyword">then</span> <span class="built_in">exec</span> <span class="string">"/my/cleanup/script"</span> as uid dba and gid dba</span></div><div class="line"><span class="meta">#</span><span class="bash"></span></div><div class="line"><span class="meta">#</span><span class="bash"></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Check directory permission, uid and gid.  An event is triggered if the</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># directory does not belong to the user with uid 0 and gid 0.  In addition,</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># the permissions have to match the octal description of 755 (see chmod(1)).</span></span></div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Check a remote host availability by issuing a ping test and check the</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># content of a response from a web server. Up to three pings are sent and</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># connection to a port and an application level network check is performed.</span></span></div><div class="line"><span class="meta">#</span><span class="bash"></span></div><div class="line"><span class="meta">#</span><span class="bash">  check host myserver with address 192.168.1.1</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> failed icmp <span class="built_in">type</span> <span class="built_in">echo</span> count 3 with timeout 3 seconds <span class="keyword">then</span> alert</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> failed port 3306 protocol mysql with timeout 15 seconds <span class="keyword">then</span> alert</span></div><div class="line"><span class="meta">#</span><span class="bash">    <span class="keyword">if</span> failed url http://user:password@www.foo.bar:8080/?querystring</span></div><div class="line"><span class="meta">#</span><span class="bash">       and content == <span class="string">'action="j_security_check"'</span></span></div><div class="line"><span class="meta">#</span><span class="bash">       <span class="keyword">then</span> alert</span></div><div class="line"><span class="meta">#</span><span class="bash"></span></div><div class="line"><span class="meta">#</span><span class="bash"></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">##############################################################################</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Includes</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">##############################################################################</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">#</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># It is possible to include additional configuration parts from other files or</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># directories.</span></span></div><div class="line"><span class="meta">#</span><span class="bash"></span></div><div class="line">   include /etc/monit/conf.d/*</div><div class="line"><span class="meta">#</span><span class="bash"></span></div></pre></td></tr></table></figure>
@@ -412,8 +408,6 @@
 <p>-　然后重启一下</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo service monit restart</div></pre></td></tr></table></figure>
 
-          
-        
       
     </div>
     
@@ -428,346 +422,40 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/04/Ruby面试整理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xiaohesong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/my_logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/04/Ruby面试整理/" itemprop="url">Ruby面试整理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-04T15:23:18+08:00">
-                2017-08-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/运维/" rel="tag"># 运维</a>
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/04/Ruby面试整理/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count fb-comments-count" data-href="http://yoursite.com/2017/08/04/Ruby面试整理/" itemprop="commentCount">0</span> comments
-                </a>
-              </span>
-            
+            <a href="/tags/rails/" rel="tag"># rails</a>
           
-
+            <a href="/tags/monit/" rel="tag"># monit</a>
           
-          
-             <span id="/2017/08/04/Ruby面试整理/" class="leancloud_visitors" data-flag-title="Ruby面试整理">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>昨天去面试了一家公司，做了一天的车，基本上是蒙蔽状态。<br>今天有时间重新思考了一下。<br>2017-02-09</p>
-<h4 id="题1"><a href="#题1" class="headerlink" title="题1:"></a>题1:</h4><ul>
-<li>题1（用each实现map）</li>
-</ul>
-<ul>
-<li>解：</li>
-</ul>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">each_for_map</span></span></div><div class="line">  a = []</div><div class="line">  <span class="keyword">self</span>.each&#123;<span class="params">|i|</span> a &lt;&lt; <span class="keyword">yield</span>(i)&#125;</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-<h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><p>这两天去面试，碰到了一下算法题，特此来与大家分享。</p>
-<h4 id="题2"><a href="#题2" class="headerlink" title="题2:"></a>题2:</h4><ul>
-<li>题1（请写个方法实现如下内容：）</li>
-</ul>
-<p><code>validate_string?(&quot;{}(text)&quot;) =&gt; true</code></p>
-<p><code>validate_string?(&quot;{()}&quot;) =&gt; false</code></p>
-<p><code>validate_string?(&quot;{()[]}&quot;) =&gt; true</code></p>
-<ul>
-<li>解：</li>
-</ul>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">validate_string?</span><span class="params">(str)</span></span></div><div class="line">  brackets = []</div><div class="line">  validate_hash = &#123;<span class="string">"&#123;"</span> =&gt; <span class="string">"&#125;"</span>, <span class="string">"("</span> =&gt; <span class="string">")"</span>, <span class="string">"["</span> =&gt; <span class="string">"]"</span>&#125;</div><div class="line">  str.each_char <span class="keyword">do</span> <span class="params">|char|</span></div><div class="line">    brackets &lt;&lt; char <span class="keyword">if</span> validate_hash.key?(char) <span class="comment">#如果存在这个key,那就追加到括号数组里。</span></div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span> <span class="keyword">if</span> validate_hash.key(char) &amp;&amp; validate_hash.key(char) != brackets.pop</div><div class="line">    <span class="comment">#如果字符串char在validate_hash中有key值并且key值不是等于数组的最后一个，那么就返回false</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">  brackets.empty?</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">puts validate_string?(<span class="string">"()&#123;xiaozhu&#125;"</span>)  <span class="comment">#=&gt; true</span></div></pre></td></tr></table></figure>
-<h4 id="题3："><a href="#题3：" class="headerlink" title="题3："></a>题3：</h4><ul>
-<li>题2</li>
-</ul>
-<p>1到n的数字中，缺少一个数，随机排序在数组中，请找出这个随机的数字。</p>
-<ul>
-<li>解</li>
-</ul>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">missing_number</span><span class="params">(array)</span></span></div><div class="line">  max = array.max</div><div class="line">  min = array.min</div><div class="line">  (min .. max).to_a - array</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a = (<span class="number">1</span> .. <span class="number">1000</span>).to_a</div><div class="line">a.delete((<span class="number">1</span> .. <span class="number">1000</span>).to_a.sample)</div><div class="line">puts missing_number(a)</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
       
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/04/build-hexo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xiaohesong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/my_logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/04/build-hexo/" itemprop="url">Build Hexo</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-04T13:58:49+08:00">
-                2017-08-04
-              </time>
+              <a href="/2017/08/04/Ruby面试整理/" rel="next" title="Ruby面试整理">
+                <i class="fa fa-chevron-left"></i> Ruby面试整理
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/04/build-hexo/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count fb-comments-count" data-href="http://yoursite.com/2017/08/04/build-hexo/" itemprop="commentCount">0</span> comments
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/08/04/build-hexo/" class="leancloud_visitors" data-flag-title="Build Hexo">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h1 id="动手搭建基于Hexo的Blog"><a href="#动手搭建基于Hexo的Blog" class="headerlink" title="动手搭建基于Hexo的Blog"></a>动手搭建基于Hexo的Blog</h1><h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><ul>
-<li><a href="https://github.com/creationix/nvm#install-script" target="_blank" rel="external">node的依赖.</a></li>
-</ul>
-<h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mkdir &lt;github-name&gt;.github.io -p</div><div class="line"><span class="built_in">cd</span> &lt;github-name&gt;.github.io</div><div class="line">sudo npm install -g hexo-cli</div></pre></td></tr></table></figure>
-<h3 id="初始化博客框架"><a href="#初始化博客框架" class="headerlink" title="初始化博客框架"></a>初始化博客框架</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo init</div><div class="line">npm install</div></pre></td></tr></table></figure>
-<h3 id="初次展现"><a href="#初次展现" class="headerlink" title="初次展现"></a>初次展现</h3><p>经过上面简单的步骤,已经把基本的博客框架给搭建好了.可以查看下效果.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo s</div></pre></td></tr></table></figure>
-<p>然后输入 <code>localhost:4000</code>可以查看下基本的效果.<br>不过,这不是我想要的.</p>
-<h2 id="美化操作"><a href="#美化操作" class="headerlink" title="美化操作"></a>美化操作</h2><h3 id="主题选择"><a href="#主题选择" class="headerlink" title="主题选择"></a>主题选择</h3><p>下载主题到<code>themes</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> https://github.com/iissnan/hexo-theme-next themes/next</div></pre></td></tr></table></figure>
-<p>这样就把主题搞定了.不过要配置下.在<code>&lt;github-name.github.io&gt;</code>的<code>_config.yml</code>中找到<code>theme</code>.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">theme: next <span class="comment">#注意, 默认是landscape</span></div></pre></td></tr></table></figure></p>
-<p>这里可配置文件选项较多,<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">请查看文档</a></p>
-<h4 id="更多配置"><a href="#更多配置" class="headerlink" title="更多配置"></a><a href="http://theme-next.iissnan.com/" target="_blank" rel="external">更多配置</a></h4><h2 id="提交到git"><a href="#提交到git" class="headerlink" title="提交到git"></a>提交到git</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git push origin master</div><div class="line">hexo g</div><div class="line">hexo d</div></pre></td></tr></table></figure>
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><h4 id="git-push到github-page之后出现404-邮件反馈"><a href="#git-push到github-page之后出现404-邮件反馈" class="headerlink" title="git push到github page之后出现404.邮件反馈:"></a><code>git push</code>到<code>github page</code>之后出现404.邮件反馈:</h4><ul>
-<li>First<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">The page build completed successfully, but returned the following warning for the `master` branch:</div><div class="line"></div><div class="line">You are attempting to use a Jekyll theme, "next", which is not supported by GitHub Pages. Please visit https://pages.github.com/themes/ for a list of supported themes. If you are using the "theme" configuration variable for something other than a Jekyll theme, we recommend you rename this variable throughout your site. For more information, see https://help.github.com/articles/adding-a-jekyll-theme-to-your-github-pages-site/.</div><div class="line"></div><div class="line">For information on troubleshooting Jekyll see:</div><div class="line"></div><div class="line">  https://help.github.com/articles/troubleshooting-jekyll-builds</div><div class="line"></div><div class="line">If you have any questions you can contact us by replying to this email.</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>这个是要指定下, <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">可以参考</a>.</p>
-<ul>
-<li>Second</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">The page build failed for the `master` branch with the following error:</div><div class="line"></div><div class="line">The tag `fancybox` on line 77 in `themes/landscape/README.md` is not a recognized Liquid tag. For more information, see https://help.github.com/articles/page-build-failed-unknown-tag-error/.</div><div class="line"></div><div class="line">For information on troubleshooting Jekyll see:</div><div class="line"></div><div class="line">  https://help.github.com/articles/troubleshooting-jekyll-builds</div><div class="line"></div><div class="line">If you have any questions you can contact us by replying to this email.</div></pre></td></tr></table></figure>
-<p>这个也比较好解决的.去<code>themes</code>下的<code>landscape</code>删除<code>README.md</code>文件.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -777,10 +465,34 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -788,6 +500,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -982,10 +705,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
@@ -1003,6 +726,18 @@
       <script id="dsq-count-scr" src="https://issue.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/08/04/使用monit监控rails应用/';
+          this.page.identifier = '2017/08/04/使用monit监控rails应用/';
+          this.page.title = '使用monit监控rails应用';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://issue.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   

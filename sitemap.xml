@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/08/04/Ruby%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/</loc>
+    
+    <lastmod>2017-08-04T07:29:48.883Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/08/04/%E4%BD%BF%E7%94%A8monit%E7%9B%91%E6%8E%A7rails%E5%BA%94%E7%94%A8/</loc>
+    
+    <lastmod>2017-08-04T07:29:48.883Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/08/04/build-hexo/</loc>
     
     <lastmod>2017-08-04T07:17:15.803Z</lastmod>
