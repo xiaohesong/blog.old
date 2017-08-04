@@ -81,4 +81,3 @@ deploy:
   type: git
   repo: https://github.com/xiaohesong/xiaohesong.github.io
   branch: master
-  message: {{ now('YYYY-MM-DD HH:mm:ss') }}
