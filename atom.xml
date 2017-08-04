@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-04T05:18:33.495Z</updated>
+  <updated>2017-08-04T07:11:58.868Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,29 +16,44 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://yoursite.com/2017/08/04/hello-world/"/>
-    <id>http://yoursite.com/2017/08/04/hello-world/</id>
-    <published>2017-08-04T05:18:33.495Z</published>
-    <updated>2017-08-04T05:18:33.495Z</updated>
+    <title>Build Hexo</title>
+    <link href="http://yoursite.com/2017/08/04/build-hexo/"/>
+    <id>http://yoursite.com/2017/08/04/build-hexo/</id>
+    <published>2017-08-04T05:58:49.000Z</published>
+    <updated>2017-08-04T07:11:58.868Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+    <content type="html"><![CDATA[<h1 id="动手搭建基于Hexo的Blog"><a href="#动手搭建基于Hexo的Blog" class="headerlink" title="动手搭建基于Hexo的Blog"></a>动手搭建基于Hexo的Blog</h1><h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><ul>
+<li><a href="https://github.com/creationix/nvm#install-script" target="_blank" rel="external">node的依赖.</a></li>
+</ul>
+<h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mkdir &lt;github-name&gt;.github.io -p</div><div class="line"><span class="built_in">cd</span> &lt;github-name&gt;.github.io</div><div class="line">sudo npm install -g hexo-cli</div></pre></td></tr></table></figure>
+<h3 id="初始化博客框架"><a href="#初始化博客框架" class="headerlink" title="初始化博客框架"></a>初始化博客框架</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo init</div><div class="line">npm install</div></pre></td></tr></table></figure>
+<h3 id="初次展现"><a href="#初次展现" class="headerlink" title="初次展现"></a>初次展现</h3><p>经过上面简单的步骤,已经把基本的博客框架给搭建好了.可以查看下效果.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo s</div></pre></td></tr></table></figure>
+<p>然后输入 <code>localhost:4000</code>可以查看下基本的效果.<br>不过,这不是我想要的.</p>
+<h2 id="美化操作"><a href="#美化操作" class="headerlink" title="美化操作"></a>美化操作</h2><h3 id="主题选择"><a href="#主题选择" class="headerlink" title="主题选择"></a>主题选择</h3><p>下载主题到<code>themes</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> https://github.com/iissnan/hexo-theme-next themes/next</div></pre></td></tr></table></figure>
+<p>这样就把主题搞定了.不过要配置下.在<code>&lt;github-name.github.io&gt;</code>的<code>_config.yml</code>中找到<code>theme</code>.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">theme: next <span class="comment">#注意, 默认是landscape</span></div></pre></td></tr></table></figure></p>
+<p>这里可配置文件选项较多,<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">请查看文档</a></p>
+<h4 id="更多配置"><a href="#更多配置" class="headerlink" title="更多配置"></a><a href="http://theme-next.iissnan.com/" target="_blank" rel="external">更多配置</a></h4><h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><h4 id="git-push到github-page之后出现404-邮件反馈"><a href="#git-push到github-page之后出现404-邮件反馈" class="headerlink" title="git push到github page之后出现404.邮件反馈:"></a><code>git push</code>到<code>github page</code>之后出现404.邮件反馈:</h4><ul>
+<li>First<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">The page build completed successfully, but returned the following warning for the `master` branch:</div><div class="line"></div><div class="line">You are attempting to use a Jekyll theme, "next", which is not supported by GitHub Pages. Please visit https://pages.github.com/themes/ for a list of supported themes. If you are using the "theme" configuration variable for something other than a Jekyll theme, we recommend you rename this variable throughout your site. For more information, see https://help.github.com/articles/adding-a-jekyll-theme-to-your-github-pages-site/.</div><div class="line"></div><div class="line">For information on troubleshooting Jekyll see:</div><div class="line"></div><div class="line">  https://help.github.com/articles/troubleshooting-jekyll-builds</div><div class="line"></div><div class="line">If you have any questions you can contact us by replying to this email.</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这个是要指定下, <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">可以参考</a>.</p>
+<ul>
+<li>Second</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">The page build failed for the `master` branch with the following error:</div><div class="line"></div><div class="line">The tag `fancybox` on line 77 in `themes/landscape/README.md` is not a recognized Liquid tag. For more information, see https://help.github.com/articles/page-build-failed-unknown-tag-error/.</div><div class="line"></div><div class="line">For information on troubleshooting Jekyll see:</div><div class="line"></div><div class="line">  https://help.github.com/articles/troubleshooting-jekyll-builds</div><div class="line"></div><div class="line">If you have any questions you can contact us by replying to this email.</div></pre></td></tr></table></figure>
+<p>这个也比较好解决的.去<code>themes</code>下的<code>landscape</code>删除<code>README.md</code>文件.</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      &lt;h1 id=&quot;动手搭建基于Hexo的Blog&quot;&gt;&lt;a href=&quot;#动手搭建基于Hexo的Blog&quot; class=&quot;headerlink&quot; title=&quot;动手搭建基于Hexo的Blog&quot;&gt;&lt;/a&gt;动手搭建基于Hexo的Blog&lt;/h1&gt;&lt;h2 id=&quot;基本操作&quot;&gt;&lt;a href
     
     </summary>
     
+    
+      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
     
   </entry>
   
