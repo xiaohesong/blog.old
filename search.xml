@@ -15,8 +15,8 @@
     <url>%2F2017%2F08%2F04%2FRuby%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86%2F</url>
     <content type="text"><![CDATA[简介昨天去面试了一家公司，做了一天的车，基本上是蒙蔽状态。今天有时间重新思考了一下。2017-02-09 题1: 题1（用each实现map） 解： 1234def each_for_map a = [] self.each&#123;|i| a &lt;&lt; yield(i)&#125;end 简介这两天去面试，碰到了一下算法题，特此来与大家分享。 题2: 题1（请写个方法实现如下内容：） validate_string?(&quot;{}(text)&quot;) =&gt; true validate_string?(&quot;{()}&quot;) =&gt; false validate_string?(&quot;{()[]}&quot;) =&gt; true 解： 12345678910def validate_string?(str) brackets = [] validate_hash = &#123;"&#123;" =&gt; "&#125;", "(" =&gt; ")", "[" =&gt; "]"&#125; str.each_char do |char| brackets &lt;&lt; char if validate_hash.key?(char) #如果存在这个key,那就追加到括号数组里。 return false if validate_hash.key(char) &amp;&amp; validate_hash.key(char) != brackets.pop #如果字符串char在validate_hash中有key值并且key值不是等于数组的最后一个，那么就返回false end brackets.empty?end 1puts validate_string?("()&#123;xiaozhu&#125;") #=&gt; true 题3： 题2 1到n的数字中，缺少一个数，随机排序在数组中，请找出这个随机的数字。 解 12345def missing_number(array) max = array.max min = array.min (min .. max).to_a - arrayend 123a = (1 .. 1000).to_aa.delete((1 .. 1000).to_a.sample)puts missing_number(a)]]></content>
       <tags>
-        <tag>Interview</tag>
         <tag>ruby</tag>
+        <tag>Interview</tag>
       </tags>
   </entry>
   <entry>
