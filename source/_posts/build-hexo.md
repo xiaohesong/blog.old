@@ -55,6 +55,7 @@ theme: next #注意, 默认是landscape
 ```
 这里可配置文件选项较多,[请查看文档](http://theme-next.iissnan.com/getting-started.html)
 
+#### [更多配置](http://theme-next.iissnan.com/)
 
 ## 注意事项
 
