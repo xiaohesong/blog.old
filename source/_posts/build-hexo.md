@@ -57,6 +57,14 @@ theme: next #注意, 默认是landscape
 
 #### [更多配置](http://theme-next.iissnan.com/)
 
+## 提交到git
+
+```shell
+git push origin master
+hexo g
+hexo d
+```
+
 ## 注意事项
 
 #### `git push`到`github page`之后出现404.邮件反馈:
