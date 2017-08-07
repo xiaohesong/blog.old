@@ -2,14 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2017/08/04/Ruby%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/</loc>
+    <loc>http://yoursite.com/2017/08/07/Rails%E4%B8%AD%E7%9A%84sql%E5%B0%8F%E8%AE%B0/</loc>
+    
+    <lastmod>2017-08-07T06:09:57.722Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/08/04/build-hexo/</loc>
     
     <lastmod>2017-08-04T08:52:38.292Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2017/08/04/build-hexo/</loc>
+    <loc>http://yoursite.com/2017/08/04/Ruby%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/</loc>
     
     <lastmod>2017-08-04T08:52:38.292Z</lastmod>
     
@@ -23,14 +30,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/tags/index.html</loc>
+    <loc>http://yoursite.com/categories/index.html</loc>
     
     <lastmod>2017-08-04T08:52:38.292Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/categories/index.html</loc>
+    <loc>http://yoursite.com/tags/index.html</loc>
     
     <lastmod>2017-08-04T08:52:38.292Z</lastmod>
     
