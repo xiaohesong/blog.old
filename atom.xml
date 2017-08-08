@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
 
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-04T08:52:38.292Z</updated>
+  <updated>2017-08-08T06:46:07.512Z</updated>
   <id>http://yoursite.com/</id>
 
   <author>
@@ -16,11 +16,70 @@
   <generator uri="http://hexo.io/">Hexo</generator>
 
   <entry>
+    <title>Rails中的sql小记</title>
+    <link href="http://yoursite.com/2017/08/07/Rails%E4%B8%AD%E7%9A%84sql%E5%B0%8F%E8%AE%B0/"/>
+    <id>http://yoursite.com/2017/08/07/Rails中的sql小记/</id>
+    <published>2017-08-07T05:47:03.000Z</published>
+    <updated>2017-08-08T06:46:07.512Z</updated>
+
+    <content type="html"><![CDATA[<h2 id="Rails中的Sql小记"><a href="#Rails中的Sql小记" class="headerlink" title="Rails中的Sql小记"></a>Rails中的Sql小记</h2><h3 id="关于join"><a href="#关于join" class="headerlink" title="关于join"></a>关于<code>join</code></h3><h4 id="sql中的join"><a href="#sql中的join" class="headerlink" title="sql中的join"></a><code>sql</code>中的<code>join</code></h4><ul>
+<li><p><code>left join</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">count</span>(<span class="keyword">distinct</span> store_name) <span class="keyword">from</span> scores <span class="keyword">left</span> <span class="keyword">join</span> stores <span class="keyword">on</span> scores.scoreable_id = stores.id <span class="keyword">and</span> scores.scoreable_type = <span class="string">'Store'</span> <span class="keyword">where</span> store.status = <span class="number">0</span> <span class="keyword">and</span> scores.user_type=<span class="number">0</span>;</div><div class="line"># 这个是查询 所有带有评分的门店,并且门店是营业状态(0)和评分的类型是用户评分(0)</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>right join</code><br>和<code>left join</code>差不多.不过这个是以右表全表为基础进行处理.</p>
+</li>
+<li><p><code>inner join</code></p>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> <span class="string">`companies`</span>.* <span class="keyword">FROM</span> <span class="string">`companies`</span> <span class="keyword">INNER</span> <span class="keyword">JOIN</span> <span class="string">`departments`</span> <span class="keyword">ON</span> <span class="string">`departments`</span>.<span class="string">`company_id`</span> = <span class="string">`companies`</span>.<span class="string">`id`</span></div></pre></td></tr></table></figure>
+<h4 id="rails中的join"><a href="#rails中的join" class="headerlink" title="rails中的join"></a><code>rails</code>中的<code>join</code></h4><ul>
+<li><code>joins</code><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Company.joins(<span class="symbol">:departments</span>).to_sql</div><div class="line"><span class="comment"># =&gt; SELECT `companies`.* FROM `companies` INNER JOIN `departments` ON `departments`.`company_id` = `companies`.`id`</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>可以发现,<code>rails</code>中的<code>joins</code>对应<code>sql</code>中的<code>inner join</code>.</p>
+<ul>
+<li><code>includes</code></li>
+</ul>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Company.includes(<span class="symbol">:departments</span>).where(<span class="symbol">departments:</span> &#123;<span class="symbol">department_name:</span> <span class="string">'#'</span>&#125;).first</div><div class="line"><span class="comment"># =&gt; SELECT  DISTINCT `companies`.`id`, `companies`.`id` AS alias_0 FROM `companies` LEFT OUTER JOIN `departments` ON `departments`.`company_id` = `companies`.`id` WHERE `departments`.`department_name` = '#'  ORDER BY `companies`.`id` ASC LIMIT 1</span></div></pre></td></tr></table></figure>
+<p>可以发现,有一个<code>LEFT OUTER JOIN</code>.是不是和<code>left join</code>很像.</p>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><h5 id="对应的关系"><a href="#对应的关系" class="headerlink" title="对应的关系"></a>对应的关系</h5><ol>
+<li><code>join</code>就是<code>inner join</code>, <code>inner</code>是可选的.</li>
+<li><code>left outer join</code>就是<code>left join</code>, <code>outer</code>是可选的.</li>
+<li>具体的可<a href="https://stackoverflow.com/questions/406294/left-join-vs-left-outer-join-in-sql-server" target="_blank" rel="external">查看此链接</a></li>
+</ol>
+<h3 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h3><ul>
+<li><code>sum</code></li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SUM(CASE WHEN num &gt; 0 THEN 1 else 0 END) AS available_times</div></pre></td></tr></table></figure>
+<ul>
+<li><p><code>round</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ROUND('123.654',2)</div><div class="line"># 123.654 取小数后两位</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>GROUP_CONCAT/CONCAT</code><br>返回拼接的字符串. GROUP_CONCAT与group by配合使用,效果更佳.</p>
+</li>
+</ul>
+<p><a href="https://github.com/xiaohesong/TIL/issues/6" target="_blank" rel="external">原文链接</a></p>
+]]></content>
+
+    <summary type="html">
+
+      &lt;h2 id=&quot;Rails中的Sql小记&quot;&gt;&lt;a href=&quot;#Rails中的Sql小记&quot; class=&quot;headerlink&quot; title=&quot;Rails中的Sql小记&quot;&gt;&lt;/a&gt;Rails中的Sql小记&lt;/h2&gt;&lt;h3 id=&quot;关于join&quot;&gt;&lt;a href=&quot;#关于join&quot;
+
+    </summary>
+
+
+      <category term="rails" scheme="http://yoursite.com/tags/rails/"/>
+
+      <category term="sql" scheme="http://yoursite.com/tags/sql/"/>
+
+  </entry>
+
+  <entry>
     <title>使用monit监控rails应用</title>
     <link href="http://yoursite.com/2017/08/04/%E4%BD%BF%E7%94%A8monit%E7%9B%91%E6%8E%A7rails%E5%BA%94%E7%94%A8/"/>
     <id>http://yoursite.com/2017/08/04/使用monit监控rails应用/</id>
     <published>2017-08-04T07:28:51.000Z</published>
-    <updated>2017-08-04T08:52:38.292Z</updated>
+    <updated>2017-08-08T06:46:07.512Z</updated>
 
     <content type="html"><![CDATA[<p>monit的安装，ubuntu可以直接安装</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install monit</div></pre></td></tr></table></figure>
@@ -42,9 +101,9 @@
     </summary>
 
 
-      <category term="运维" scheme="http://yoursite.com/tags/%E8%BF%90%E7%BB%B4/"/>
-
       <category term="rails" scheme="http://yoursite.com/tags/rails/"/>
+
+      <category term="运维" scheme="http://yoursite.com/tags/%E8%BF%90%E7%BB%B4/"/>
 
       <category term="monit" scheme="http://yoursite.com/tags/monit/"/>
 
@@ -55,7 +114,7 @@
     <link href="http://yoursite.com/2017/08/04/Ruby%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
     <id>http://yoursite.com/2017/08/04/Ruby面试整理/</id>
     <published>2017-08-04T07:23:18.000Z</published>
-    <updated>2017-08-04T08:52:38.292Z</updated>
+    <updated>2017-08-08T06:45:58.664Z</updated>
 
     <content type="html"><![CDATA[<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>昨天去面试了一家公司，做了一天的车，基本上是蒙蔽状态。<br>今天有时间重新思考了一下。<br>2017-02-09</p>
 <h4 id="题1"><a href="#题1" class="headerlink" title="题1:"></a>题1:</h4><ul>
@@ -106,7 +165,7 @@
     <link href="http://yoursite.com/2017/08/04/build-hexo/"/>
     <id>http://yoursite.com/2017/08/04/build-hexo/</id>
     <published>2017-08-04T05:58:49.000Z</published>
-    <updated>2017-08-04T08:52:38.292Z</updated>
+    <updated>2017-08-08T06:46:07.512Z</updated>
 
     <content type="html"><![CDATA[<h1 id="动手搭建基于Hexo的Blog"><a href="#动手搭建基于Hexo的Blog" class="headerlink" title="动手搭建基于Hexo的Blog"></a>动手搭建基于Hexo的Blog</h1><h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><ul>
 <li><a href="https://github.com/creationix/nvm#install-script" target="_blank" rel="external">node的依赖.</a></li>
