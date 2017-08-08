@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-07T06:09:57.722Z</updated>
+  <updated>2017-08-08T06:46:07.512Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/08/07/Rails%E4%B8%AD%E7%9A%84sql%E5%B0%8F%E8%AE%B0/"/>
     <id>http://yoursite.com/2017/08/07/Rails中的sql小记/</id>
     <published>2017-08-07T05:47:03.000Z</published>
-    <updated>2017-08-07T06:09:57.722Z</updated>
+    <updated>2017-08-08T06:46:07.512Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Rails中的Sql小记"><a href="#Rails中的Sql小记" class="headerlink" title="Rails中的Sql小记"></a>Rails中的Sql小记</h2><h3 id="关于join"><a href="#关于join" class="headerlink" title="关于join"></a>关于<code>join</code></h3><h4 id="sql中的join"><a href="#sql中的join" class="headerlink" title="sql中的join"></a><code>sql</code>中的<code>join</code></h4><ul>
 <li><p><code>left join</code></p>
@@ -79,7 +79,7 @@
     <link href="http://yoursite.com/2017/08/04/%E4%BD%BF%E7%94%A8monit%E7%9B%91%E6%8E%A7rails%E5%BA%94%E7%94%A8/"/>
     <id>http://yoursite.com/2017/08/04/使用monit监控rails应用/</id>
     <published>2017-08-04T07:28:51.000Z</published>
-    <updated>2017-08-04T08:52:38.292Z</updated>
+    <updated>2017-08-08T06:46:07.512Z</updated>
     
     <content type="html"><![CDATA[<p>monit的安装，ubuntu可以直接安装</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install monit</div></pre></td></tr></table></figure>
@@ -101,9 +101,9 @@
     </summary>
     
     
-      <category term="运维" scheme="http://yoursite.com/tags/%E8%BF%90%E7%BB%B4/"/>
-    
       <category term="rails" scheme="http://yoursite.com/tags/rails/"/>
+    
+      <category term="运维" scheme="http://yoursite.com/tags/%E8%BF%90%E7%BB%B4/"/>
     
       <category term="monit" scheme="http://yoursite.com/tags/monit/"/>
     
@@ -114,7 +114,7 @@
     <link href="http://yoursite.com/2017/08/04/Ruby%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/"/>
     <id>http://yoursite.com/2017/08/04/Ruby面试整理/</id>
     <published>2017-08-04T07:23:18.000Z</published>
-    <updated>2017-08-04T08:52:38.292Z</updated>
+    <updated>2017-08-08T06:45:58.664Z</updated>
     
     <content type="html"><![CDATA[<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>昨天去面试了一家公司，做了一天的车，基本上是蒙蔽状态。<br>今天有时间重新思考了一下。<br>2017-02-09</p>
 <h4 id="题1"><a href="#题1" class="headerlink" title="题1:"></a>题1:</h4><ul>
@@ -166,7 +166,7 @@
     <link href="http://yoursite.com/2017/08/04/build-hexo/"/>
     <id>http://yoursite.com/2017/08/04/build-hexo/</id>
     <published>2017-08-04T05:58:49.000Z</published>
-    <updated>2017-08-04T08:52:38.292Z</updated>
+    <updated>2017-08-08T06:46:07.512Z</updated>
     
     <content type="html"><![CDATA[<h1 id="动手搭建基于Hexo的Blog"><a href="#动手搭建基于Hexo的Blog" class="headerlink" title="动手搭建基于Hexo的Blog"></a>动手搭建基于Hexo的Blog</h1><h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><ul>
 <li><a href="https://github.com/creationix/nvm#install-script" target="_blank" rel="external">node的依赖.</a></li>
