@@ -101,9 +101,9 @@
     </summary>
     
     
-      <category term="rails" scheme="http://yoursite.com/tags/rails/"/>
-    
       <category term="运维" scheme="http://yoursite.com/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="rails" scheme="http://yoursite.com/tags/rails/"/>
     
       <category term="monit" scheme="http://yoursite.com/tags/monit/"/>
     
