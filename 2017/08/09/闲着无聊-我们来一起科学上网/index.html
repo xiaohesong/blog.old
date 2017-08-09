@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Here">
 <meta property="og:description" content="首先去买个大陆以外的服务器.搬瓦工找个,得用中国机房的购买成功之后,会邮件通知.然后登录进去,安装影梭.1231. sudo apt-get update2. sudo apt-get install python-pip3. sudo pip install shadowsocks 不出意外,会安装成功了这里.然后添加一个配置文件sudo vim shadowsocks-conf.json:12">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-09T07:08:34.596Z">
+<meta property="og:updated_time" content="2017-08-09T07:20:05.210Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="闲着无聊,我们来一起科学上网">
 <meta name="twitter:description" content="首先去买个大陆以外的服务器.搬瓦工找个,得用中国机房的购买成功之后,会邮件通知.然后登录进去,安装影梭.1231. sudo apt-get update2. sudo apt-get install python-pip3. sudo pip install shadowsocks 不出意外,会安装成功了这里.然后添加一个配置文件sudo vim shadowsocks-conf.json:12">
@@ -397,7 +397,10 @@
 <p>然后就是客户端了.这里主要说的是iphone.<br>注: Android可以下载到shadowsocks.但是ipone不是很好.<br>所以在App Store里下载了一个<code>wingy</code>就可以了.</p>
 <h3 id="番外"><a href="#番外" class="headerlink" title="番外:"></a>番外:</h3><p>有人说最近爬墙打压的厉害.还是不知道咋回事,网速不理想.<br>准备加速试试效果.</p>
 <ol>
-<li><a href="https://github.com/iMeiji/shadowsocks_install/wiki/shadowsocks-optimize" target="_blank" rel="external">ss加速</a></li>
+<li><p><a href="https://github.com/iMeiji/shadowsocks_install/wiki/shadowsocks-optimize" target="_blank" rel="external">ss加速</a></p>
+</li>
+<li><p><a href="https://github.com/iMeiji/shadowsocks_install/wiki/%E5%BC%80%E5%90%AFTCP-BBR%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%E7%AE%97%E6%B3%95" target="_blank" rel="external">推荐tcp bbr</a></p>
+</li>
 </ol>
 <ul>
 <li><p>首先更新内核</p>
@@ -405,7 +408,7 @@
 <li><p>开启bbr</p>
 </li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">modprobe tcp_bbr</div><div class="line">sudo echo "tcp_bbr" &gt;&gt; /etc/modules-load.d/modules.conf</div><div class="line"><span class="meta">#</span> 我的/etc 下面没有modules-load.d. 所以直接 vim /etc/modules,然后添加 tcp_bbr.</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">modprobe tcp_bbr</div><div class="line">sudo echo "tcp_bbr" &gt;&gt; /etc/modules-load.d/modules.conf</div><div class="line"><span class="meta">#</span><span class="bash"> 我的/etc 下面没有modules-load.d. 所以直接 vim /etc/modules,然后添加 tcp_bbr.</span></div></pre></td></tr></table></figure>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo echo "net.core.default_qdisc=fq" &gt;&gt; /etc/sysctl.conf</div><div class="line">sudo echo "net.ipv4.tcp_congestion_control=bbr" &gt;&gt; /etc/sysctl.conf</div></pre></td></tr></table></figure>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo sysctl -p</div></pre></td></tr></table></figure>
 
