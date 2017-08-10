@@ -2,6 +2,69 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/10/24/ubuntu%E6%9F%A5%E7%9C%8Bpostgresql%E6%93%8D%E4%BD%9C%E6%97%A5%E5%BF%97/</loc>
+    
+    <lastmod>2017-08-10T04:26:00.820Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/11/16/Rails-Middleware/</loc>
+    
+    <lastmod>2017-08-10T04:26:00.820Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/06/12/Rails5-1%E4%BD%BF%E7%94%A8jquery/</loc>
+    
+    <lastmod>2017-08-10T04:26:00.820Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/03/05/React%E5%92%8CRails/</loc>
+    
+    <lastmod>2017-08-10T04:26:00.820Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/12/14/%E9%98%BF%E9%87%8C%E4%BA%91ECS%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85postgresql%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8%E7%9A%84%E9%97%AE%E9%A2%98/</loc>
+    
+    <lastmod>2017-08-10T04:26:00.820Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/11/16/%E4%BD%BF%E7%94%A8sinatra%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84crud%E5%8A%9F%E8%83%BD/</loc>
+    
+    <lastmod>2017-08-10T04:26:00.820Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/08/26/rails-capistrano-nginx-puma%E9%83%A8%E7%BD%B2/</loc>
+    
+    <lastmod>2017-08-10T04:26:00.820Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/05/26/rails4-actioncable/</loc>
+    
+    <lastmod>2017-08-10T04:26:00.820Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/03/31/docker-rails-postgresql-redis-puma-nginx/</loc>
+    
+    <lastmod>2017-08-10T04:26:00.820Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/08/07/Rails%E4%B8%AD%E7%9A%84sql%E5%B0%8F%E8%AE%B0/</loc>
     
     <lastmod>2017-08-10T01:18:21.906Z</lastmod>
@@ -16,14 +79,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2017/08/04/build-hexo/</loc>
+    <loc>http://yoursite.com/2017/08/04/%E4%BD%BF%E7%94%A8monit%E7%9B%91%E6%8E%A7rails%E5%BA%94%E7%94%A8/</loc>
     
     <lastmod>2017-08-08T06:46:07.512Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2017/08/04/%E4%BD%BF%E7%94%A8monit%E7%9B%91%E6%8E%A7rails%E5%BA%94%E7%94%A8/</loc>
+    <loc>http://yoursite.com/2017/08/04/build-hexo/</loc>
     
     <lastmod>2017-08-08T06:46:07.512Z</lastmod>
     
