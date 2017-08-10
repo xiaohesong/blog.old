@@ -1,6 +1,6 @@
 ---
 title: rails capistrano nginx puma部署
-date: 2017-08-10 09:44:57
+date: 2016-08-26 12:35
 tags:
   - 运维
   - 部署
@@ -323,3 +323,5 @@ sudo service nginx reload
 sudo service nginx restart
 ```
 这个时候，你会发现`/home/ubuntu/www/appname/shared/tmp/sockets` 存在一个`new-puma.sock`
+
+[blog原文](http://blog.csdn.net/hesonggg/article/details/52327266)

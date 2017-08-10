@@ -1,6 +1,6 @@
 ---
 title: ubuntu查看postgresql操作日志
-date: 2017-08-10 10:21:24
+date: 2016-10-24 17:55
 tags:
   - 运维
   - 日志
@@ -36,3 +36,5 @@ sudo service postgresql restart
 ```shell
 tail f /var/lib/postgresql/9.5/main/postgresql-2016-10-24_175049.log
 ```
+
+[blog原文](http://blog.csdn.net/hesonggg/article/details/52913894)
