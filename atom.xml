@@ -39,7 +39,7 @@
 <li><p>开启bbr</p>
 </li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">modprobe tcp_bbr</div><div class="line">sudo echo "tcp_bbr" &gt;&gt; /etc/modules-load.d/modules.conf</div><div class="line"><span class="meta">#</span> 我的/etc 下面没有modules-load.d. 所以直接 vim /etc/modules,然后添加 tcp_bbr.</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">modprobe tcp_bbr</div><div class="line">sudo echo "tcp_bbr" &gt;&gt; /etc/modules-load.d/modules.conf</div><div class="line"><span class="meta">#</span><span class="bash"> 我的/etc 下面没有modules-load.d. 所以直接 vim /etc/modules,然后添加 tcp_bbr.</span></div></pre></td></tr></table></figure>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo echo "net.core.default_qdisc=fq" &gt;&gt; /etc/sysctl.conf</div><div class="line">sudo echo "net.ipv4.tcp_congestion_control=bbr" &gt;&gt; /etc/sysctl.conf</div></pre></td></tr></table></figure>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo sysctl -p</div></pre></td></tr></table></figure>
 ]]></content>
@@ -143,9 +143,9 @@
     </summary>
     
     
-      <category term="运维" scheme="http://yoursite.com/tags/%E8%BF%90%E7%BB%B4/"/>
-    
       <category term="rails" scheme="http://yoursite.com/tags/rails/"/>
+    
+      <category term="运维" scheme="http://yoursite.com/tags/%E8%BF%90%E7%BB%B4/"/>
     
       <category term="monit" scheme="http://yoursite.com/tags/monit/"/>
     
