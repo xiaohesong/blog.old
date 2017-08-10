@@ -21,7 +21,7 @@
     <id>http://yoursite.com/2017/08/09/闲着无聊-我们来一起科学上网/</id>
     <published>2017-08-09T07:07:35.000Z</published>
     <updated>2017-08-09T07:20:05.210Z</updated>
-    
+
     <content type="html"><![CDATA[<p>首先去买个大陆以外的服务器.<br><a href="https://bwh1.net/clientarea.php?action=products" target="_blank" rel="external">搬瓦工找个</a>,得用中国机房的<br>购买成功之后,会邮件通知.<br>然后登录进去,安装影梭.<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1. sudo apt-get update</div><div class="line">2. sudo apt-get install python-pip</div><div class="line">3. sudo pip install shadowsocks</div></pre></td></tr></table></figure></p>
 <p>不出意外,会安装成功了这里.然后添加一个配置文件<br><code>sudo vim shadowsocks-conf.json</code>:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  "server":"0.0.0.0",</div><div class="line">  "server_port":8888,</div><div class="line">  "local_address":"127.0.0.1",</div><div class="line">  "local_port":1080,</div><div class="line">  "password":"这里是你的链接ss的密码",    </div><div class="line">  "timeout":600,</div><div class="line">  "method":"aes-256-cfb"</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>上面就是对应的配置文件,服务端配置好之后,启动<code>shadowsocks</code>:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ssserver -c shadowsocks-conf.json -d start</div></pre></td></tr></table></figure></p>
@@ -43,26 +43,26 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo echo "net.core.default_qdisc=fq" &gt;&gt; /etc/sysctl.conf</div><div class="line">sudo echo "net.ipv4.tcp_congestion_control=bbr" &gt;&gt; /etc/sysctl.conf</div></pre></td></tr></table></figure>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo sysctl -p</div></pre></td></tr></table></figure>
 ]]></content>
-    
+
     <summary type="html">
-    
+
       &lt;p&gt;首先去买个大陆以外的服务器.&lt;br&gt;&lt;a href=&quot;https://bwh1.net/clientarea.php?action=products&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;搬瓦工找个&lt;/a&gt;,得用中国机房的&lt;br&gt;购买成功之后,会邮
-    
+
     </summary>
-    
+
       <category term="科学上网" scheme="http://yoursite.com/categories/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
-    
-    
+
+
       <category term="科学上网" scheme="http://yoursite.com/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
-    
+
   </entry>
-  
+
   <entry>
     <title>Rails中的sql小记</title>
     <link href="http://yoursite.com/2017/08/07/Rails%E4%B8%AD%E7%9A%84sql%E5%B0%8F%E8%AE%B0/"/>
     <id>http://yoursite.com/2017/08/07/Rails中的sql小记/</id>
     <published>2017-08-07T05:47:03.000Z</published>
-    <updated>2017-08-08T06:46:07.512Z</updated>
+    <updated>2017-08-10T01:18:21.906Z</updated>
 
     <content type="html"><![CDATA[<h2 id="Rails中的Sql小记"><a href="#Rails中的Sql小记" class="headerlink" title="Rails中的Sql小记"></a>Rails中的Sql小记</h2><h3 id="关于join"><a href="#关于join" class="headerlink" title="关于join"></a>关于<code>join</code></h3><h4 id="sql中的join"><a href="#sql中的join" class="headerlink" title="sql中的join"></a><code>sql</code>中的<code>join</code></h4><ul>
 <li><p><code>left join</code></p>
