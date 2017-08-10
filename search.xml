@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[闲着无聊,我们来一起科学上网]]></title>
+    <url>%2F2017%2F08%2F09%2F%E9%97%B2%E7%9D%80%E6%97%A0%E8%81%8A-%E6%88%91%E4%BB%AC%E6%9D%A5%E4%B8%80%E8%B5%B7%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%2F</url>
+    <content type="text"><![CDATA[首先去买个大陆以外的服务器.搬瓦工找个,得用中国机房的购买成功之后,会邮件通知.然后登录进去,安装影梭.1231. sudo apt-get update2. sudo apt-get install python-pip3. sudo pip install shadowsocks 不出意外,会安装成功了这里.然后添加一个配置文件sudo vim shadowsocks-conf.json:123456789&#123; "server":"0.0.0.0", "server_port":8888, "local_address":"127.0.0.1", "local_port":1080, "password":"这里是你的链接ss的密码", "timeout":600, "method":"aes-256-cfb"&#125; 上面就是对应的配置文件,服务端配置好之后,启动shadowsocks:1sudo ssserver -c shadowsocks-conf.json -d start 然后就是客户端了.这里主要说的是iphone.注: Android可以下载到shadowsocks.但是ipone不是很好.所以在App Store里下载了一个wingy就可以了. 番外:有人说最近爬墙打压的厉害.还是不知道咋回事,网速不理想.准备加速试试效果. ss加速 推荐tcp bbr 首先更新内核 开启bbr 123modprobe tcp_bbrsudo echo "tcp_bbr" &gt;&gt; /etc/modules-load.d/modules.conf# 我的/etc 下面没有modules-load.d. 所以直接 vim /etc/modules,然后添加 tcp_bbr. 12sudo echo "net.core.default_qdisc=fq" &gt;&gt; /etc/sysctl.confsudo echo "net.ipv4.tcp_congestion_control=bbr" &gt;&gt; /etc/sysctl.conf 1sudo sysctl -p]]></content>
+      <categories>
+        <category>科学上网</category>
+      </categories>
+      <tags>
+        <tag>科学上网</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Rails中的sql小记]]></title>
     <url>%2F2017%2F08%2F07%2FRails%E4%B8%AD%E7%9A%84sql%E5%B0%8F%E8%AE%B0%2F</url>
     <content type="text"><![CDATA[Rails中的Sql小记关于joinsql中的join left join 12select count(distinct store_name) from scores left join stores on scores.scoreable_id = stores.id and scores.scoreable_type = 'Store' where store.status = 0 and scores.user_type=0;# 这个是查询 所有带有评分的门店,并且门店是营业状态(0)和评分的类型是用户评分(0) right join和left join差不多.不过这个是以右表全表为基础进行处理. inner join 1SELECT `companies`.* FROM `companies` INNER JOIN `departments` ON `departments`.`company_id` = `companies`.`id` rails中的join joins12Company.joins(:departments).to_sql# =&gt; SELECT `companies`.* FROM `companies` INNER JOIN `departments` ON `departments`.`company_id` = `companies`.`id` 可以发现,rails中的joins对应sql中的inner join. includes 12Company.includes(:departments).where(departments: &#123;department_name: '#'&#125;).first# =&gt; SELECT DISTINCT `companies`.`id`, `companies`.`id` AS alias_0 FROM `companies` LEFT OUTER JOIN `departments` ON `departments`.`company_id` = `companies`.`id` WHERE `departments`.`department_name` = '#' ORDER BY `companies`.`id` ASC LIMIT 1 可以发现,有一个LEFT OUTER JOIN.是不是和left join很像. 小结对应的关系 join就是inner join, inner是可选的. left outer join就是left join, outer是可选的. 具体的可查看此链接 其他方法 sum 1SUM(CASE WHEN num &gt; 0 THEN 1 else 0 END) AS available_times round 12ROUND('123.654',2)# 123.654 取小数后两位 GROUP_CONCAT/CONCAT返回拼接的字符串. GROUP_CONCAT与group by配合使用,效果更佳. 原文链接]]></content>
