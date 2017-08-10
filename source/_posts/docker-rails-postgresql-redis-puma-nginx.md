@@ -424,3 +424,7 @@ volumes:
   - ~/cache-redis:/var/lib/redis/data
 ```
 ### Note: 目前对docker知之甚少，后期会补充，有不是的地方，恳请留言，谢谢! 后期会继续补充!
+
+
+
+### [blog原文](http://blog.csdn.net/hesonggg/article/details/68927265)
