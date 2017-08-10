@@ -1,6 +1,7 @@
 ---
 title: Rails中的sql小记
 date: 2017-08-07 13:47:03
+top: 1
 tags:
   - rails
   - sql
