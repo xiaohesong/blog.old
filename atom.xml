@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-09T07:20:05.210Z</updated>
+  <updated>2017-08-17T04:54:40.494Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,60 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>docker+daocloud+rails部署管理</title>
+    <link href="http://yoursite.com/2017/08/17/docker-daocloud-rails%E9%83%A8%E7%BD%B2%E7%AE%A1%E7%90%86/"/>
+    <id>http://yoursite.com/2017/08/17/docker-daocloud-rails部署管理/</id>
+    <published>2017-08-17T04:52:36.000Z</published>
+    <updated>2017-08-17T04:54:40.494Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="本文将简述如何将docker放在daocloud里管理-将在上一篇的基础上阐述"><a href="#本文将简述如何将docker放在daocloud里管理-将在上一篇的基础上阐述" class="headerlink" title="本文将简述如何将docker放在daocloud里管理. 将在上一篇的基础上阐述."></a>本文将简述如何将<code>docker</code>放在<code>daocloud</code>里管理. 将在<a href="http://blog.csdn.net/hesonggg/article/details/68927265" target="_blank" rel="external">上一篇的基础上</a>阐述.</h4><h4 id="去daocloud官网注册登录账号之后-然后在用户中心代码托管里绑定git账号"><a href="#去daocloud官网注册登录账号之后-然后在用户中心代码托管里绑定git账号" class="headerlink" title="去daocloud官网注册登录账号之后,然后在用户中心代码托管里绑定git账号."></a>去<a href="https://www.daocloud.io/" target="_blank" rel="external">daocloud官网</a>注册登录账号之后,然后在用户中心代码托管里绑定<code>git</code>账号.</h4><h3 id="简单操作"><a href="#简单操作" class="headerlink" title="简单操作"></a>简单操作</h3><p>1 首先创建一个项目.如<code>psp</code>, 然后选择<code>git</code> 的相关仓库.例如<code>psp</code>.(创建的项目需<code>git</code>仓库有<code>Dockerfile</code>文件.) 然后就可以创建了.</p>
+<p>2 创建成功之后,可以找到<code>设置</code>,勾选<code>成功构建后设置 latest 为镜像标签</code>.<br>点击左侧的项目找到<code>psp</code>,右侧的查看详情下拉框下选择点击<code>手动触发</code>.可以选择触发的分支.我是选择了一个<code>docker</code>分支.点击确定之后便会执行.可以点击进去查看详情.一会便会构建成功.</p>
+<p>3 执行成功之后,可以在镜像仓库里发现我们刚执行的结果.点击<code>部署最新版本</code>.填写应用名称选择主机,就可以进行下一步操作.</p>
+<pre><code>- 选择主机 ,需要在对应的服务器添加监控,才可以检测到并选择.
+- 自有主机-集群管理-添加主机.可以发现有个命令,在服务器上添加就好了.
+</code></pre><p>4 然后返回第3步,添加刚添加的主机.点击下一步.进去之后可以先不做配置,直接点击<code>立即部署</code>.这个时候会跳转到容器的日志部分.等待部署成功,即状态为<code>运行中</code> 这个时候我们就完成了一个简单的配置.</p>
+<h3 id="多个容器的操作"><a href="#多个容器的操作" class="headerlink" title="多个容器的操作"></a>多个容器的操作</h3><h5 id="上面我们完成了一个简单的容器启动-不过一个应用下来-有很多容器需要启动配置"><a href="#上面我们完成了一个简单的容器启动-不过一个应用下来-有很多容器需要启动配置" class="headerlink" title="上面我们完成了一个简单的容器启动.不过一个应用下来,有很多容器需要启动配置."></a>上面我们完成了一个简单的容器启动.不过一个应用下来,有很多容器需要启动配置.</h5><ul>
+<li><p>自有主机-应用<br>  在这里我们可以找到之前创建的一个容器.这个容器里有配置,有YAML.有日志,不过这个还只是一个单独的容器,我们需要应用其他的容易.<br>  注意, 容器内部的这个<code>yml</code>只是针对单个容器的配置,并不类似于<code>docker-compose.yml</code>, 我们来尝试在<code>daocloud</code>里配置<code>docker</code>的<code>compose</code>.</p>
+</li>
+<li><p>自有主机-Stack</p>
+</li>
+</ul>
+<ol>
+<li><code>创建新Stack</code>,输入名称,如: <code>psp-compose</code>,这里你自定义.</li>
+<li>这里的<code>yml</code>配置值得注意,虽然<code>stack</code>的作用和<code>docker-compose</code>类似,但是语法方面还是有些细微的差别.<br>例如,我们直接在<code>docker-compose.yml</code>里可以对<code>Dockerfile</code>进行<code>build</code>或者指定<code>Dockerfile</code>进行<code>build</code>.但是这里就不行,这里<code>build</code>需要替换成<code>image</code>.下面是我的<code>stack</code>的例子.</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="attr">version:</span> <span class="string">'2'</span></div><div class="line"><span class="attr">services:</span></div><div class="line"><span class="attr">  app:</span></div><div class="line"><span class="attr">    image:</span> <span class="string">daocloud.io/xiaohesong/psp_staging:latest</span> <span class="comment">#这个是你构建的镜像.</span></div><div class="line"><span class="attr">    command:</span> <span class="string">/bin/bash</span> <span class="string">start_up.sh</span></div><div class="line"><span class="attr">    privileged:</span> <span class="literal">false</span></div><div class="line"><span class="attr">    restart:</span> <span class="string">always</span></div><div class="line"><span class="attr">    links:</span></div><div class="line"><span class="bullet">    -</span> <span class="string">postgres</span></div><div class="line"><span class="bullet">    -</span> <span class="string">redis</span></div><div class="line"><span class="attr">    ports:</span></div><div class="line"><span class="bullet">    -</span> <span class="string">'3000'</span></div><div class="line"><span class="attr">    environment:</span></div><div class="line"><span class="bullet">    -</span> <span class="string">VIRTUAL_HOST=ip</span> <span class="comment">#这个是nginx-proxy镜像的一个方法.为你配置nginx.</span></div><div class="line"><span class="bullet">    -</span><span class="string">SECRET_KEY_BASE=</span> <span class="string">xxxxxxxxx</span></div><div class="line"><span class="attr">    volumes:</span></div><div class="line"><span class="bullet">    -</span> <span class="string">/rails/data/log:/home/issue/www/psp/log</span></div><div class="line"><span class="attr">  web:</span></div><div class="line"><span class="attr">    image:</span> <span class="string">daocloud.io/daocloud/nginx-proxy</span></div><div class="line"><span class="attr">    ports:</span></div><div class="line"><span class="bullet">    -</span> <span class="number">80</span><span class="string">:80</span></div><div class="line"><span class="attr">    links:</span></div><div class="line"><span class="bullet">    -</span> <span class="string">app</span></div><div class="line"><span class="attr">    volumes:</span></div><div class="line"><span class="bullet">    -</span> <span class="string">/var/run/docker.sock:/tmp/docker.sock:ro</span></div><div class="line"><span class="attr">  postgres:</span></div><div class="line"><span class="attr">    image:</span> <span class="attr">postgres:9.4</span></div><div class="line"><span class="attr">    ports:</span></div><div class="line"><span class="bullet">    -</span> <span class="string">'5432'</span></div><div class="line"><span class="attr">    volumes:</span></div><div class="line"><span class="bullet">    -</span> <span class="string">/rails/main-database:/var/lib/postgresql/data</span></div><div class="line"><span class="attr">  redis:</span></div><div class="line"><span class="attr">    image:</span> <span class="attr">redis:3.0.5</span></div><div class="line"><span class="attr">    ports:</span></div><div class="line"><span class="bullet">    -</span> <span class="number">6379</span><span class="string">:6379</span></div><div class="line"><span class="attr">    volumes:</span></div><div class="line"><span class="bullet">    -</span> <span class="string">/rails/cache-database:/var/lib/redis/data</span></div></pre></td></tr></table></figure>
+<ul>
+<li>这里的<code>nginx</code>镜像是<code>nginx-proxy</code>. 他提供了一个<code>VIRTUAL_HOST</code>变量,会根据指定这个变量所在的容器去配置<code>nginx</code>的配置信息.如果不用这个,自己又需要配置<code>nginx</code>的信息,例如<a href="http://blog.csdn.net/hesonggg/article/details/68927265" target="_blank" rel="external">上一篇文章</a>的<code>nginx</code>,需要指定相关的配置,去指定<code>Dockerfile-nginx</code>. 这样可能就需要你去创建一个镜像.类似<code>psp</code>,自己构建一个镜像到<code>daocloud</code>,然后再指定构造的镜像.</li>
+</ul>
+<p>-<br>创建<code>Stack</code>的时候,把这个写在<code>yml</code>文件里(因项目差异,这里有些需要你自己去更改.),然后选择主机创建部署,会跳转到日志,等待完成.<br>完成之后会发现,在<code>自有主机-应用</code>里创建了我们在<code>Stack</code>里加的相关容器.</p>
+<p><code>docker</code>和<code>daocloud</code>的大体流程类似这样,具体的细节还是需要去完善.</p>
+<h4 id="番外-比较坑的地方"><a href="#番外-比较坑的地方" class="headerlink" title="番外: 比较坑的地方"></a>番外: 比较坑的地方</h4><ul>
+<li>服务器<br>之前阿里活动,9块钱半年的服务器搞了一台.发现配置好了站点之后,<code>ip</code>访问不了. 服务器上访问是ok的.</li>
+</ul>
+<p>解决方案:<br>进入阿里云控制台 –&gt; 云服务器 ECS –&gt; 网络和安全 –&gt; 安全组 –&gt; 配置规则 –&gt; 快速创建规则<br>在里面选择<code>HTTP(80)</code>, <code>授权对象</code>不清楚的就直接<code>0.0.0.0/0</code></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;本文将简述如何将docker放在daocloud里管理-将在上一篇的基础上阐述&quot;&gt;&lt;a href=&quot;#本文将简述如何将docker放在daocloud里管理-将在上一篇的基础上阐述&quot; class=&quot;headerlink&quot; title=&quot;本文将简述如何将docker
+    
+    </summary>
+    
+      <category term="部署" scheme="http://yoursite.com/categories/%E9%83%A8%E7%BD%B2/"/>
+    
+    
+      <category term="rails" scheme="http://yoursite.com/tags/rails/"/>
+    
+      <category term="docker" scheme="http://yoursite.com/tags/docker/"/>
+    
+      <category term="部署" scheme="http://yoursite.com/tags/%E9%83%A8%E7%BD%B2/"/>
+    
+      <category term="daocloud" scheme="http://yoursite.com/tags/daocloud/"/>
+    
+  </entry>
   
   <entry>
     <title>闲着无聊,我们来一起科学上网</title>
@@ -412,11 +466,11 @@ sudo mv /tmp/docker-compose /usr/local/bin</code></p>
       <category term="迁移" scheme="http://yoursite.com/categories/%E8%BF%81%E7%A7%BB/"/>
     
     
+      <category term="docker" scheme="http://yoursite.com/tags/docker/"/>
+    
       <category term="运维" scheme="http://yoursite.com/tags/%E8%BF%90%E7%BB%B4/"/>
     
       <category term="部署" scheme="http://yoursite.com/tags/%E9%83%A8%E7%BD%B2/"/>
-    
-      <category term="docker" scheme="http://yoursite.com/tags/docker/"/>
     
   </entry>
   

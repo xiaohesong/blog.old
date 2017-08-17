@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[docker+daocloud+rails部署管理]]></title>
+    <url>%2F2017%2F08%2F17%2Fdocker-daocloud-rails%E9%83%A8%E7%BD%B2%E7%AE%A1%E7%90%86%2F</url>
+    <content type="text"><![CDATA[本文将简述如何将docker放在daocloud里管理. 将在上一篇的基础上阐述.去daocloud官网注册登录账号之后,然后在用户中心代码托管里绑定git账号.简单操作1 首先创建一个项目.如psp, 然后选择git 的相关仓库.例如psp.(创建的项目需git仓库有Dockerfile文件.) 然后就可以创建了. 2 创建成功之后,可以找到设置,勾选成功构建后设置 latest 为镜像标签.点击左侧的项目找到psp,右侧的查看详情下拉框下选择点击手动触发.可以选择触发的分支.我是选择了一个docker分支.点击确定之后便会执行.可以点击进去查看详情.一会便会构建成功. 3 执行成功之后,可以在镜像仓库里发现我们刚执行的结果.点击部署最新版本.填写应用名称选择主机,就可以进行下一步操作. - 选择主机 ,需要在对应的服务器添加监控,才可以检测到并选择. - 自有主机-集群管理-添加主机.可以发现有个命令,在服务器上添加就好了. 4 然后返回第3步,添加刚添加的主机.点击下一步.进去之后可以先不做配置,直接点击立即部署.这个时候会跳转到容器的日志部分.等待部署成功,即状态为运行中 这个时候我们就完成了一个简单的配置. 多个容器的操作上面我们完成了一个简单的容器启动.不过一个应用下来,有很多容器需要启动配置. 自有主机-应用 在这里我们可以找到之前创建的一个容器.这个容器里有配置,有YAML.有日志,不过这个还只是一个单独的容器,我们需要应用其他的容易. 注意, 容器内部的这个yml只是针对单个容器的配置,并不类似于docker-compose.yml, 我们来尝试在daocloud里配置docker的compose. 自有主机-Stack 创建新Stack,输入名称,如: psp-compose,这里你自定义. 这里的yml配置值得注意,虽然stack的作用和docker-compose类似,但是语法方面还是有些细微的差别.例如,我们直接在docker-compose.yml里可以对Dockerfile进行build或者指定Dockerfile进行build.但是这里就不行,这里build需要替换成image.下面是我的stack的例子. 12345678910111213141516171819202122232425262728293031323334353637version: '2'services: app: image: daocloud.io/xiaohesong/psp_staging:latest #这个是你构建的镜像. command: /bin/bash start_up.sh privileged: false restart: always links: - postgres - redis ports: - '3000' environment: - VIRTUAL_HOST=ip #这个是nginx-proxy镜像的一个方法.为你配置nginx. -SECRET_KEY_BASE= xxxxxxxxx volumes: - /rails/data/log:/home/issue/www/psp/log web: image: daocloud.io/daocloud/nginx-proxy ports: - 80:80 links: - app volumes: - /var/run/docker.sock:/tmp/docker.sock:ro postgres: image: postgres:9.4 ports: - '5432' volumes: - /rails/main-database:/var/lib/postgresql/data redis: image: redis:3.0.5 ports: - 6379:6379 volumes: - /rails/cache-database:/var/lib/redis/data 这里的nginx镜像是nginx-proxy. 他提供了一个VIRTUAL_HOST变量,会根据指定这个变量所在的容器去配置nginx的配置信息.如果不用这个,自己又需要配置nginx的信息,例如上一篇文章的nginx,需要指定相关的配置,去指定Dockerfile-nginx. 这样可能就需要你去创建一个镜像.类似psp,自己构建一个镜像到daocloud,然后再指定构造的镜像. -创建Stack的时候,把这个写在yml文件里(因项目差异,这里有些需要你自己去更改.),然后选择主机创建部署,会跳转到日志,等待完成.完成之后会发现,在自有主机-应用里创建了我们在Stack里加的相关容器. docker和daocloud的大体流程类似这样,具体的细节还是需要去完善. 番外: 比较坑的地方 服务器之前阿里活动,9块钱半年的服务器搞了一台.发现配置好了站点之后,ip访问不了. 服务器上访问是ok的. 解决方案:进入阿里云控制台 –&gt; 云服务器 ECS –&gt; 网络和安全 –&gt; 安全组 –&gt; 配置规则 –&gt; 快速创建规则在里面选择HTTP(80), 授权对象不清楚的就直接0.0.0.0/0]]></content>
+      <categories>
+        <category>部署</category>
+      </categories>
+      <tags>
+        <tag>rails</tag>
+        <tag>docker</tag>
+        <tag>部署</tag>
+        <tag>daocloud</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[闲着无聊,我们来一起科学上网]]></title>
     <url>%2F2017%2F08%2F09%2F%E9%97%B2%E7%9D%80%E6%97%A0%E8%81%8A-%E6%88%91%E4%BB%AC%E6%9D%A5%E4%B8%80%E8%B5%B7%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%2F</url>
     <content type="text"><![CDATA[首先去买个大陆以外的服务器.搬瓦工找个,得用中国机房的购买成功之后,会邮件通知.然后登录进去,安装影梭.1231. sudo apt-get update2. sudo apt-get install python-pip3. sudo pip install shadowsocks 不出意外,会安装成功了这里.然后添加一个配置文件sudo vim shadowsocks-conf.json:123456789&#123; "server":"0.0.0.0", "server_port":8888, "local_address":"127.0.0.1", "local_port":1080, "password":"这里是你的链接ss的密码", "timeout":600, "method":"aes-256-cfb"&#125; 上面就是对应的配置文件,服务端配置好之后,启动shadowsocks:1sudo ssserver -c shadowsocks-conf.json -d start 然后就是客户端了.这里主要说的是iphone.注: Android可以下载到shadowsocks.但是ipone不是很好.所以在App Store里下载了一个wingy就可以了. 番外:有人说最近爬墙打压的厉害.还是不知道咋回事,网速不理想.准备加速试试效果. ss加速 推荐tcp bbr 首先更新内核 开启bbr 123modprobe tcp_bbrsudo echo "tcp_bbr" &gt;&gt; /etc/modules-load.d/modules.conf# 我的/etc 下面没有modules-load.d. 所以直接 vim /etc/modules,然后添加 tcp_bbr. 12sudo echo "net.core.default_qdisc=fq" &gt;&gt; /etc/sysctl.confsudo echo "net.ipv4.tcp_congestion_control=bbr" &gt;&gt; /etc/sysctl.conf 1sudo sysctl -p]]></content>
@@ -77,9 +91,9 @@
         <category>迁移</category>
       </categories>
       <tags>
+        <tag>docker</tag>
         <tag>运维</tag>
         <tag>部署</tag>
-        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
