@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="docker,部署,运维," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Here" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="看了两天的docker相关文章，就尝试把一个现有的小blog换成docker部署尝试一番．前期有个疑问，capistrano一类的工具也可以很方便的部署，为什么还要docker．有人说保持环境一致，这个不多做评价，不过个人感觉，rails分为三个环境，各有优势，为何要保持一致．在我看来，capistrano和docker的主要区别，还是一个适合多机部署，一个适合单机部署．也有一些人说docker更">
+<meta name="keywords" content="docker,部署,运维">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker+rails+postgresql+redis+puma+nginx">
+<meta property="og:url" content="http://yoursite.com/2017/03/31/docker-rails-postgresql-redis-puma-nginx/index.html">
+<meta property="og:site_name" content="Here">
+<meta property="og:description" content="看了两天的docker相关文章，就尝试把一个现有的小blog换成docker部署尝试一番．前期有个疑问，capistrano一类的工具也可以很方便的部署，为什么还要docker．有人说保持环境一致，这个不多做评价，不过个人感觉，rails分为三个环境，各有优势，为何要保持一致．在我看来，capistrano和docker的主要区别，还是一个适合多机部署，一个适合单机部署．也有一些人说docker更">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://img.blog.csdn.net/20170401113256338?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaGVzb25nR0c=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-08-10T04:26:00.820Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="docker+rails+postgresql+redis+puma+nginx">
+<meta name="twitter:description" content="看了两天的docker相关文章，就尝试把一个现有的小blog换成docker部署尝试一番．前期有个疑问，capistrano一类的工具也可以很方便的部署，为什么还要docker．有人说保持环境一致，这个不多做评价，不过个人感觉，rails分为三个环境，各有优势，为何要保持一致．在我看来，capistrano和docker的主要区别，还是一个适合多机部署，一个适合单机部署．也有一些人说docker更">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170401113256338?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaGVzb25nR0c=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/31/docker-rails-postgresql-redis-puma-nginx/"/>
+
+
+
+
+
+  <title>docker+rails+postgresql+redis+puma+nginx | Here</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Here</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">xiaohesong's blogs</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            目录
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/31/docker-rails-postgresql-redis-puma-nginx/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiaohesong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Here">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">docker+rails+postgresql+redis+puma+nginx</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-31T17:10:00+08:00">
+                2017-03-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/迁移/" itemprop="url" rel="index">
+                    <span itemprop="name">迁移</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/31/docker-rails-postgresql-redis-puma-nginx/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/03/31/docker-rails-postgresql-redis-puma-nginx/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/31/docker-rails-postgresql-redis-puma-nginx/" class="leancloud_visitors" data-flag-title="docker+rails+postgresql+redis+puma+nginx">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>看了两天的docker相关文章，就尝试把一个现有的小blog换成docker部署尝试一番．<br>前期有个疑问，capistrano一类的工具也可以很方便的部署，为什么还要docker．<br>有人说保持环境一致，这个不多做评价，不过个人感觉，rails分为三个环境，各有优势，为何要保持一致．<br>在我看来，capistrano和docker的主要区别，还是一个适合多机部署，一个适合单机部署．也有一些人说docker更适合微架构，不过我觉得多机部署也没有什么区别把，单点故障之类的都可以．<br>有些扯远了，还是言归正传吧．</p>
+<p>我们首先得安装docker及相应的工具．</p>
+<ul>
+<li><p>安装docker</p>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -sSL https://get.daocloud.io/docker | sh</div></pre></td></tr></table></figure>
+<p>  这里可以把docker添加到组里,安装成功之后会有这么一句话．<br>  <code>sudo usermod -aG docker name</code></p>
+</li>
+<li><p>安装docker-compose</p>
+<p>  <code>curl -L https://github.com/docker/compose/releases/download/1.7.1/docker-compose-Linux-x86_64 &gt; \
+/tmp/docker-compose &amp;&amp; \
+chmod +x /tmp/docker-compose &amp;&amp;
+sudo mv /tmp/docker-compose /usr/local/bin</code></p>
+<h5 id="然后我们验证是否安装成功．"><a href="#然后我们验证是否安装成功．" class="headerlink" title="然后我们验证是否安装成功．"></a>然后我们验证是否安装成功．</h5></li>
+</ul>
+<p><code>docker --version
+    docker-compose --version</code></p>
+<p>这里主要是针对现存的项目进行处理．假设项目名称是 <code>psp</code>.<br>我们在项目主目录下新建一个文件<br><code>Dockerfile</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">FROM ruby:2.3.1　＃基本镜像</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash">author info</span></div><div class="line">MAINTAINER Xiaozhu didmehh@163.com</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash">基本的依赖</span></div><div class="line">RUN apt-get update &amp;&amp; apt-get install -y build-essential libpq-dev nodejs</div><div class="line"></div><div class="line">＃设置环境变量</div><div class="line">ENV RAILS_ENV production</div><div class="line">ENV RACK_ENV production</div><div class="line">上面两个是指定应用环境</div><div class="line">ENV RAILS_ROOT /home/issue/www/psp</div><div class="line">＃创建工作目录</div><div class="line">RUN mkdir -p $RAILS_ROOT</div><div class="line"></div><div class="line">＃指定工作目录</div><div class="line">WORKDIR $RAILS_ROOT</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash">处理gem</span></div><div class="line">COPY Gemfile Gemfile</div><div class="line">COPY Gemfile.lock Gemfile.lock</div><div class="line">RUN gem install bundler</div><div class="line">RUN bundle install</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> 复制puma的配置</span></div><div class="line">COPY config/puma.rb config/puma.rb</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> 复制主目录</span></div><div class="line">COPY . .</div><div class="line">＃　暴露3000</div><div class="line">EXPOSE 3000</div><div class="line"></div><div class="line">＃运行shell脚本</div><div class="line">CMD bash start_up.sh</div></pre></td></tr></table></figure></p>
+<h4 id="上面的是Dockerfile的基本配置．发现上面有出现-config-puma-rb-以及-start-up-sh"><a href="#上面的是Dockerfile的基本配置．发现上面有出现-config-puma-rb-以及-start-up-sh" class="headerlink" title="上面的是Dockerfile的基本配置．发现上面有出现 config/puma.rb    以及　start_up.sh."></a>上面的是Dockerfile的基本配置．发现上面有出现 <code>config/puma.rb</code>    以及　<code>start_up.sh</code>.</h4><h4 id="config-puma-rb在rails5里会自动创建，可以自己找．"><a href="#config-puma-rb在rails5里会自动创建，可以自己找．" class="headerlink" title="config/puma.rb在rails5里会自动创建，可以自己找．"></a><code>config/puma.rb</code>在rails5里会自动创建，可以自己找．</h4><h4 id="start-up-sh-内容如下："><a href="#start-up-sh-内容如下：" class="headerlink" title="start_up.sh 内容如下："></a><code>start_up.sh</code> 内容如下：</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></div><div class="line"><span class="meta">#</span><span class="bash">　处理静态资源</span></div><div class="line">bundle exec rake assets:precompile</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash">启动puma</span></div><div class="line">bundle exec puma -C config/puma.rb</div></pre></td></tr></table></figure>
+<p>这个是基本的配置，针对rails服务．下面来看看nginx的处理．</p>
+<h5 id="在主目录下创建-Dockerfile-nginx"><a href="#在主目录下创建-Dockerfile-nginx" class="headerlink" title="在主目录下创建 Dockerfile-nginx"></a>在主目录下创建 <code>Dockerfile-nginx</code></h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">FROM nginx</div><div class="line"></div><div class="line">RUN apt-get update -qq &amp;&amp; apt-get -y install apache2-utils</div><div class="line"></div><div class="line">ENV RAILS_ROOT /home/issue/www/psp</div><div class="line"></div><div class="line">WORKDIR $RAILS_ROOT</div><div class="line"></div><div class="line">RUN mkdir log</div><div class="line"></div><div class="line">COPY public public/</div><div class="line"></div><div class="line">COPY config/nginx.conf /tmp/docker_example.nginx</div><div class="line">RUN envsubst '$RAILS_ROOT' &lt; /tmp/docker_example.nginx &gt; /etc/nginx/conf.d/default.conf</div><div class="line"><span class="meta">#</span><span class="bash"> RUN rm -rf /etc/nginx/sites-available/default</span></div><div class="line"><span class="meta">#</span><span class="bash"> ADD config/nginx.conf /etc/nginx/sites-enabled/nginx.conf</span></div><div class="line"></div><div class="line">EXPOSE 80</div><div class="line"></div><div class="line">CMD [ "nginx", "-g", "daemon off;" ]</div></pre></td></tr></table></figure>
+<p>到这里，我们把基本的Dockerfile给创建了．<br>接下来我们需要在项目里写个nginx配置文件<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">config/nginx.conf</span></div><div class="line"></div><div class="line">upstream puma &#123;</div><div class="line">  server app:3000;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">server &#123;</div><div class="line"></div><div class="line">  listen 80;</div><div class="line"></div><div class="line">  client_max_body_size 4G;</div><div class="line">  keepalive_timeout 10;</div><div class="line"></div><div class="line">  error_page 500 502 504 /500.html;</div><div class="line">  error_page 503 @503;</div><div class="line"></div><div class="line">  server_name xiaohesong.com;</div><div class="line">  root /home/issue/www/psp/public;</div><div class="line">  try_files $uri/index.html $uri @puma;</div><div class="line"></div><div class="line">  access_log /home/issue/www/psp/log/nginx.access.log;</div><div class="line">  error_log /home/issue/www/psp/log/nginx.error.log;</div><div class="line"></div><div class="line">  location @puma &#123;</div><div class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line">    proxy_set_header Host $http_host;</div><div class="line">    proxy_redirect off;</div><div class="line"></div><div class="line">    proxy_pass http://puma;</div><div class="line">    # limit_req zone=one;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  location ^~ /assets/ &#123;</div><div class="line">    gzip_static on;</div><div class="line">    expires max;</div><div class="line">    add_header Cache-Control public;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  location = /50x.html &#123;</div><div class="line">    root html;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  location = /404.html &#123;</div><div class="line">    root html;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  location @503 &#123;</div><div class="line">    error_page 405 = /system/maintenance.html;</div><div class="line">    if (-f $document_root/system/maintenance.html) &#123;</div><div class="line">      rewrite ^(.*)$ /system/maintenance.html break;</div><div class="line">    &#125;</div><div class="line">    rewrite ^(.*)$ /503.html break;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  if ($request_method !~ ^(GET|HEAD|PUT|PATCH|POST|DELETE|OPTIONS)$ )&#123;</div><div class="line">    return 405;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  if (-f $document_root/system/maintenance.html) &#123;</div><div class="line">    return 503;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  location ~ \.(php|html)$ &#123;</div><div class="line">    return 405;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>####上面配置完了nginx以及主应用，那么我们得把他们关联起来．<br>我们需要<code>docker-compose</code><br>在主目录下创建<code>docker-compose.yml</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">version: '2'</div><div class="line">services:</div><div class="line">  app:</div><div class="line">    build: .</div><div class="line">    command: bundle exec puma -C config/puma.rb</div><div class="line">    volumes:</div><div class="line">      - .:/home/issue/www/psp</div><div class="line">    expose:</div><div class="line">      - "3000"</div><div class="line">    links:</div><div class="line">      - postgres</div><div class="line">      - redis</div><div class="line">    env_file:</div><div class="line">      - .secret.env</div><div class="line">  web:</div><div class="line">    build:</div><div class="line">      context: .</div><div class="line">      dockerfile: Dockerfile-nginx</div><div class="line">    links:</div><div class="line">      - app</div><div class="line">    ports:</div><div class="line">      - "80:80"</div><div class="line">  postgres:</div><div class="line">    image: postgres:9.4</div><div class="line">    ports:</div><div class="line">      - "5432"</div><div class="line">    volumes:</div><div class="line">      - ~/main-database:/var/lib/postgresql/data</div><div class="line">  redis:</div><div class="line">    image: redis:3.0.5</div><div class="line">    ports:</div><div class="line">      - '6379:6379'</div><div class="line">    volumes:</div><div class="line">      - ~/cache-database:/var/lib/redis/data</div></pre></td></tr></table></figure>
+<ul>
+<li>可以发现在redis以及postgres加上了volumes.这个是可以设置共享数据，挂在数据卷，便于持久化存储数据．</li>
+<li>redis以及postgres都是直接从远程仓库拷贝下来的镜像．<a href="https://hub.docker.com/explore/" target="_blank" rel="external">hub docker</a></li>
+<li><p>volumes前面的宿主机可以通过 <code>docker volume create --name cache-database</code>　来创建,如果不创建，会默认生成．可以通过 <code>docker volume ls</code> 查看.<br>设置的别名如果过多，一个个的创建很麻烦，你也可以这样处理．</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">version: '2'</div><div class="line">services:</div><div class="line">  app:</div><div class="line">    ...</div><div class="line">  ...</div><div class="line">    ...</div><div class="line">volumes:</div><div class="line">  cache-database:</div><div class="line">  main-database:</div></pre></td></tr></table></figure>
+</li>
+<li><p>links是把需要的服务拿过来使用．例如app作为主服务，需要持久化存储的数据库．</p>
+</li>
+<li><p>配置数据库的用户密码．</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">postgres:</div><div class="line">    image: postgres:9.4</div><div class="line">	...</div><div class="line">	environment:</div><div class="line">	  POSTGRES_USER: pg_user</div><div class="line">      POSTGRES_PASSWORD: secret password</div></pre></td></tr></table></figure>
+</li>
+<li><p>app的配置里，我们有个env_file,这个可以在主目录下创建一个.env的文件．<br>可以用来存放一些环境变量，或者可以直接shell脚本直接写文件到电脑系统配置里<br>我们这里存放的主要是secret：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SECRET_KEY_BASE=ecd694a53572357f98c4644991ef5d6e27d46a1dc18d605b7e58c7143ff0122c868b63f771788c82fe825fd6945dfa0f322ec73dddcf19d1e6c85234a66eae44</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>SECRET_KEY_BASE可以通过 <code>RAILS_ENV=production bundle exec rake secret</code>　生成.</p>
+<h4 id="接下来配置数据库．"><a href="#接下来配置数据库．" class="headerlink" title="接下来配置数据库．"></a>接下来配置数据库．</h4><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#config/database.yml</span></div><div class="line"></div><div class="line"><span class="symbol">default:</span> &amp;default</div><div class="line">  <span class="symbol">adapter:</span> postgresql</div><div class="line">  <span class="symbol">encoding:</span> unicode</div><div class="line">  <span class="symbol">pool:</span> <span class="number">5</span></div><div class="line">  <span class="symbol">timeout:</span> <span class="number">5000</span></div><div class="line">  <span class="symbol">username:</span> postgres</div><div class="line">  <span class="comment"># please see the update below about using hostnames to</span></div><div class="line">  <span class="comment"># access linked services via docker-compose</span></div><div class="line">  <span class="symbol">host:</span> postgres <span class="comment">#是 docker-compose.yml中的key,与app,web同列，redis同样</span></div><div class="line">  <span class="symbol">port:</span> <span class="number">5432</span></div><div class="line">  <span class="symbol">password:</span> <span class="comment">#&lt;%= ENV['POSTGRES_PASSWORD'] %&gt;</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="symbol">development:</span></div><div class="line">  &lt;&lt;: *default</div><div class="line">  <span class="symbol">database:</span> psp_dev</div><div class="line"></div><div class="line"><span class="symbol">test:</span></div><div class="line">  &lt;&lt;: *default</div><div class="line">  <span class="symbol">database:</span> psp_test</div><div class="line"></div><div class="line"><span class="symbol">production:</span></div><div class="line">  &lt;&lt;: *default</div><div class="line">  <span class="symbol">database:</span> psp_pro</div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># config/redis.yml</span></div><div class="line"><span class="symbol">defaults:</span> &amp;defaults</div><div class="line">  <span class="symbol">host:</span> redis</div><div class="line">  <span class="symbol">port:</span> <span class="number">6379</span></div><div class="line"></div><div class="line"><span class="symbol">development:</span></div><div class="line">  &lt;&lt;: *defaults</div><div class="line"></div><div class="line"><span class="symbol">test:</span></div><div class="line">  &lt;&lt;: *defaults</div><div class="line"></div><div class="line"><span class="symbol">staging:</span></div><div class="line">  &lt;&lt;: *defaults</div><div class="line"></div><div class="line"><span class="symbol">production:</span></div><div class="line">  &lt;&lt;: *defaults</div></pre></td></tr></table></figure>
+<p>接下来，我们构建这些个服务．</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker-compose build</div></pre></td></tr></table></figure>
+<p>这里可能需要一些时间，构建好之后，我们先启动测试一下，可以不要以守护状态运行，直接:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker-compose up</div></pre></td></tr></table></figure></p>
+<p>不出意外．可以发现启动成功．我们看下启动了哪些容器．打开一个标签页，运行以下命令查看:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker ps</div></pre></td></tr></table></figure>
+<p>会有以下的输出：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                         NAMES</div><div class="line">f716c3ee2414        psp_web             "nginx -g 'daemon ..."   About an hour ago   Up About an hour    0.0.0.0:80-&gt;80/tcp, 443/tcp   psp_web_1</div><div class="line">57702197c38c        psp_app             "bundle exec puma ..."   About an hour ago   Up About an hour    3000/tcp                      psp_app_1</div><div class="line">415edf596c26        redis:3.0.5         "/entrypoint.sh re..."   About an hour ago   Up About an hour    0.0.0.0:6379-&gt;6379/tcp        psp_redis_1</div><div class="line">cecf281102b3        postgres:9.4        "docker-entrypoint..."   About an hour ago   Up About an hour    0.0.0.0:32770-&gt;5432/tcp       psp_postgres_1</div></pre></td></tr></table></figure></p>
+<p>启动了也存在问题呀，数据库没有，那我们就创建一个数据库．<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker-compose run app rake db:create</div><div class="line">docker-compose run app rake db:migrate</div></pre></td></tr></table></figure></p>
+<p>如果想删除所有的容器，可以运行下面这个命令:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker rm `docker ps --no-trunc -aq`</div></pre></td></tr></table></figure></p>
+<h2 id="Ps-源码"><a href="#Ps-源码" class="headerlink" title="Ps: 源码"></a>Ps: <a href="https://github.com/xiaohesong/psp/tree/docker" target="_blank" rel="external">源码</a></h2><p>###参考</p>
+<ul>
+<li>shell脚本推荐<a href="http://linux.vbird.org/" target="_blank" rel="external">鸟哥linux私房菜</a></li>
+<li><a href="https://www.rails365.net/articles/an-zhuang-docker-yi" target="_blank" rel="external">docker基本知识参考随风的系列博客</a></li>
+<li><a href="http://codepany.com/blog/rails-5-and-docker-puma-nginx/" target="_blank" rel="external">RAILS 5 AND DOCKER (PUMA, NGINX)</a></li>
+<li><a href="https://docs.docker.com/compose/rails/#connect-the-database" target="_blank" rel="external">connect database</a></li>
+</ul>
+<p>###外传，遇到的问题:</p>
+<ul>
+<li><p>问题一：无法build容器.<br>执行<code>docker-compose build</code>　无法正常构建．<br><img src="http://img.blog.csdn.net/20170401113256338?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaGVzb25nR0c=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="如下图所示:"><br>折腾了很久，换源也不行，<a href="https://github.com/docker-library/rails/issues/43" target="_blank" rel="external">在google找到了一个类似的</a> .把代理关了就好．．．．</p>
+</li>
+<li><p>问题二：nginx只有　<code>welcome to nginx</code><br>没有正常启动项目，就是没有和项目绑定在一起．<br>找了很久，最后经过各种排查以及尝试．把nginx的<code>Dockerfile-nginx</code> 修改一下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">COPY config/nginx.conf /tmp/docker_example.nginx</div><div class="line">RUN envsubst '$RAILS_ROOT' &lt; /tmp/docker_example.nginx &gt; /etc/nginx/conf.d/default.conf</div><div class="line"><span class="meta">#</span><span class="bash"> RUN rm -rf /etc/nginx/sites-available/default</span></div><div class="line"><span class="meta">#</span><span class="bash"> ADD config/nginx.conf /etc/nginx/sites-enabled/nginx.conf</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>可以发现下面的两行被注释了，以前习惯的把配置文件放在<code>/etc/nginx/sites-enabled/nginx.conf</code> 下面．这次就不行了．<br>这是为什么？进入nginx容器看下.<br>先找到nginx的容器id, 通过<code>docker ps</code> 查看当前运行的容器．假设输出如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CONTAINER ID     |   IMAGE       |        COMMAND         |         ...                   </div><div class="line">f716c3ee2414	 |		...		 |			...			  |			...</div></pre></td></tr></table></figure></p>
+<p>然后我们进入这个容器: <code>docker exec -it f716c3ee2414 bash</code><br>进入容器之后 <code>cat /etc/nginx/nginx.conf　| grep include</code> 会发现输出一下内容：<br><code>include       /etc/nginx/mime.types;
+    include /etc/nginx/conf.d/*.conf;</code><br>这个　<code>include /etc/nginx/conf.d/*.conf;</code>　是包含配置文件的路劲．都在这个下面，然而我们改的是在<code>/etc/nginx/sites-enabled/*</code> 下面．所以说，配置文件没有生效，使用的默认的default配置．</p>
+<ul>
+<li>问题三: 启动时出错，<code>docker-compose up</code> 出错．<br>出错是:<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ERROR: for redis  driver failed programming external connectivity on endpoint psp_redis_1 (13693b22524bf940932c25f9b7f5dac45671f68fbc04fad1a76ed08274db5699): Error starting userland proxy: listen tcp 0.0.0.0:6379: bind: address already in use</div><div class="line">Traceback (most recent call last):</div><div class="line">  File "&lt;string&gt;", line 3, in &lt;module&gt;</div><div class="line">  File "compose/cli/main.py", line 63, in main</div><div class="line">AttributeError: 'ProjectError' object has no attribute 'msg'</div><div class="line">docker-compose returned -1</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>显示已经存在，很怪异吧．经过排查，是因为本地的redis已经启动．关了本地的redis服务就好．<br><code>sudo service redis-server stop</code><br>然后重启，<code>docker-compose up</code>　发现不会redis出错地址绑定关系．<br>又出现一个错误．<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ERROR: Named volume "db:/var/lib/postgresql/data:rw" is used in service "db" but no declaration was found in the volumes section.</div></pre></td></tr></table></figure></p>
+<p>这个是因为语法错误，如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">redis:</div><div class="line">   ...</div><div class="line">   volumes:</div><div class="line">     - cache-redis:/var/lib/redis/data</div></pre></td></tr></table></figure></p>
+<p>这样就会出错，换一种写法,如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">volumes:</div><div class="line">  - ~/cache-redis:/var/lib/redis/data</div></pre></td></tr></table></figure>
+<h3 id="Note-目前对docker知之甚少，后期会补充，有不是的地方，恳请留言，谢谢-后期会继续补充"><a href="#Note-目前对docker知之甚少，后期会补充，有不是的地方，恳请留言，谢谢-后期会继续补充" class="headerlink" title="Note: 目前对docker知之甚少，后期会补充，有不是的地方，恳请留言，谢谢! 后期会继续补充!"></a>Note: 目前对docker知之甚少，后期会补充，有不是的地方，恳请留言，谢谢! 后期会继续补充!</h3><h3 id="blog原文"><a href="#blog原文" class="headerlink" title="blog原文"></a><a href="http://blog.csdn.net/hesonggg/article/details/68927265" target="_blank" rel="external">blog原文</a></h3>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/docker/" rel="tag"># docker</a>
+          
+            <a href="/tags/部署/" rel="tag"># 部署</a>
+          
+            <a href="/tags/运维/" rel="tag"># 运维</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/05/React和Rails/" rel="next" title="React和Rails">
+                <i class="fa fa-chevron-left"></i> React和Rails
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/26/rails4-actioncable/" rel="prev" title="rails4 actioncable">
+                rails4 actioncable <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="xiaohesong" />
+          <p class="site-author-name" itemprop="name">xiaohesong</p>
+           
+              <p class="site-description motion-element" itemprop="description">相信自己,认为自己是对的,那就继续下去!</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xiaohesong" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Github
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/hesongGG" target="_blank" title="Blog">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Blog
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#然后我们验证是否安装成功．"><span class="nav-number">1.</span> <span class="nav-text">然后我们验证是否安装成功．</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#上面的是Dockerfile的基本配置．发现上面有出现-config-puma-rb-以及-start-up-sh"><span class="nav-number"></span> <span class="nav-text">上面的是Dockerfile的基本配置．发现上面有出现 config/puma.rb    以及　start_up.sh.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#config-puma-rb在rails5里会自动创建，可以自己找．"><span class="nav-number"></span> <span class="nav-text">config/puma.rb在rails5里会自动创建，可以自己找．</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#start-up-sh-内容如下："><span class="nav-number"></span> <span class="nav-text">start_up.sh 内容如下：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#在主目录下创建-Dockerfile-nginx"><span class="nav-number">1.</span> <span class="nav-text">在主目录下创建 Dockerfile-nginx</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#接下来配置数据库．"><span class="nav-number"></span> <span class="nav-text">接下来配置数据库．</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ps-源码"><span class="nav-number"></span> <span class="nav-text">Ps: 源码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Note-目前对docker知之甚少，后期会补充，有不是的地方，恳请留言，谢谢-后期会继续补充"><span class="nav-number"></span> <span class="nav-text">Note: 目前对docker知之甚少，后期会补充，有不是的地方，恳请留言，谢谢! 后期会继续补充!</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#blog原文"><span class="nav-number"></span> <span class="nav-text">blog原文</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xiaohesong</span>
+</div>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      您是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      个同学
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://issue.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/03/31/docker-rails-postgresql-redis-puma-nginx/';
+          this.page.identifier = '2017/03/31/docker-rails-postgresql-redis-puma-nginx/';
+          this.page.title = 'docker+rails+postgresql+redis+puma+nginx';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://issue.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("Fq4dc8p8z538yhNuMyjuWMVl-gzGzoHsz", "Itm6LboIAIEtNXBPHIz3pmXs");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
