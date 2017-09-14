@@ -16,7 +16,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2016/10/24/ubuntu%E6%9F%A5%E7%9C%8Bpostgresql%E6%93%8D%E4%BD%9C%E6%97%A5%E5%BF%97/</loc>
+    <loc>http://yoursite.com/2016/08/26/rails-capistrano-nginx-puma%E9%83%A8%E7%BD%B2/</loc>
     
     <lastmod>2017-08-10T04:26:00.820Z</lastmod>
     
@@ -30,14 +30,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2016/11/16/Rails-Middleware/</loc>
+    <loc>http://yoursite.com/2016/11/16/%E4%BD%BF%E7%94%A8sinatra%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84crud%E5%8A%9F%E8%83%BD/</loc>
     
     <lastmod>2017-08-10T04:26:00.820Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2016/11/16/%E4%BD%BF%E7%94%A8sinatra%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84crud%E5%8A%9F%E8%83%BD/</loc>
+    <loc>http://yoursite.com/2017/06/12/Rails5-1%E4%BD%BF%E7%94%A8jquery/</loc>
     
     <lastmod>2017-08-10T04:26:00.820Z</lastmod>
     
@@ -58,14 +58,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2016/08/26/rails-capistrano-nginx-puma%E9%83%A8%E7%BD%B2/</loc>
+    <loc>http://yoursite.com/2016/10/24/ubuntu%E6%9F%A5%E7%9C%8Bpostgresql%E6%93%8D%E4%BD%9C%E6%97%A5%E5%BF%97/</loc>
     
     <lastmod>2017-08-10T04:26:00.820Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2017/06/12/Rails5-1%E4%BD%BF%E7%94%A8jquery/</loc>
+    <loc>http://yoursite.com/2016/11/16/Rails-Middleware/</loc>
     
     <lastmod>2017-08-10T04:26:00.820Z</lastmod>
     
@@ -93,14 +93,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2017/08/04/%E4%BD%BF%E7%94%A8monit%E7%9B%91%E6%8E%A7rails%E5%BA%94%E7%94%A8/</loc>
+    <loc>http://yoursite.com/2017/08/04/build-hexo/</loc>
     
     <lastmod>2017-08-08T06:46:07.512Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2017/08/04/build-hexo/</loc>
+    <loc>http://yoursite.com/2017/08/04/%E4%BD%BF%E7%94%A8monit%E7%9B%91%E6%8E%A7rails%E5%BA%94%E7%94%A8/</loc>
     
     <lastmod>2017-08-08T06:46:07.512Z</lastmod>
     
@@ -114,14 +114,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/categories/index.html</loc>
+    <loc>http://yoursite.com/tags/index.html</loc>
     
     <lastmod>2017-08-04T08:52:38.292Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/tags/index.html</loc>
+    <loc>http://yoursite.com/categories/index.html</loc>
     
     <lastmod>2017-08-04T08:52:38.292Z</lastmod>
     
