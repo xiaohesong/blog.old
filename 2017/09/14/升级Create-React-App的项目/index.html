@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="rails," />
+  <meta name="keywords" content="react,create-react-app," />
 
 
 
@@ -96,18 +96,18 @@
 
 
 
-<meta name="description" content="rails5.1的变化还真是大,对于js的拥抱很友好.Rails5.1变化  前端的管理工具,类似bundler.  1rake yarn:install ps : 安装nodeps : 安装yarn  利用yarn添加juqery  1yarn add jquery  application.js如下123//= require jquery//= require jquery_ujs...">
-<meta name="keywords" content="rails">
+<meta name="description" content="为了实现路由按需加载,因为触及到版本的相关问题(版本详情),所以本着折腾的原则,想去尝试升级一下,也是为了以后实践项目多知道几个坑吧. 情况是这的,之前也不知道版本信息的要求,直接在电脑上开搞了.用的官方的create-react-app.  升级前的相关环境  node -v =&amp;gt; 4.几的忘记了 npm -v =&amp;gt; 3.几的忘记了. webpack version =&amp;gt; 1.">
+<meta name="keywords" content="react,create-react-app">
 <meta property="og:type" content="article">
-<meta property="og:title" content=" Rails5.1使用jquery">
-<meta property="og:url" content="http://yoursite.com/2017/06/12/Rails5-1使用jquery/index.html">
+<meta property="og:title" content="升级Create React App的项目">
+<meta property="og:url" content="http://yoursite.com/2017/09/14/升级Create-React-App的项目/index.html">
 <meta property="og:site_name" content="Here">
-<meta property="og:description" content="rails5.1的变化还真是大,对于js的拥抱很友好.Rails5.1变化  前端的管理工具,类似bundler.  1rake yarn:install ps : 安装nodeps : 安装yarn  利用yarn添加juqery  1yarn add jquery  application.js如下123//= require jquery//= require jquery_ujs...">
+<meta property="og:description" content="为了实现路由按需加载,因为触及到版本的相关问题(版本详情),所以本着折腾的原则,想去尝试升级一下,也是为了以后实践项目多知道几个坑吧. 情况是这的,之前也不知道版本信息的要求,直接在电脑上开搞了.用的官方的create-react-app.  升级前的相关环境  node -v =&amp;gt; 4.几的忘记了 npm -v =&amp;gt; 3.几的忘记了. webpack version =&amp;gt; 1.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-10T04:26:00.820Z">
+<meta property="og:updated_time" content="2017-09-14T05:40:04.203Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content=" Rails5.1使用jquery">
-<meta name="twitter:description" content="rails5.1的变化还真是大,对于js的拥抱很友好.Rails5.1变化  前端的管理工具,类似bundler.  1rake yarn:install ps : 安装nodeps : 安装yarn  利用yarn添加juqery  1yarn add jquery  application.js如下123//= require jquery//= require jquery_ujs...">
+<meta name="twitter:title" content="升级Create React App的项目">
+<meta name="twitter:description" content="为了实现路由按需加载,因为触及到版本的相关问题(版本详情),所以本着折腾的原则,想去尝试升级一下,也是为了以后实践项目多知道几个坑吧. 情况是这的,之前也不知道版本信息的要求,直接在电脑上开搞了.用的官方的create-react-app.  升级前的相关环境  node -v =&amp;gt; 4.几的忘记了 npm -v =&amp;gt; 3.几的忘记了. webpack version =&amp;gt; 1.">
 
 
 
@@ -136,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/06/12/Rails5-1使用jquery/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/09/14/升级Create-React-App的项目/"/>
 
 
 
 
 
-  <title> Rails5.1使用jquery | Here</title>
+  <title>升级Create React App的项目 | Here</title>
   
 
 
@@ -275,7 +275,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/12/Rails5-1使用jquery/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/14/升级Create-React-App的项目/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xiaohesong">
@@ -292,7 +292,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"> Rails5.1使用jquery</h1>
+          <h1 class="post-title" itemprop="name headline">升级Create React App的项目</h1>
         
 
         <div class="post-meta">
@@ -304,8 +304,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-12T11:21:00+08:00">
-                2017-06-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-14T13:38:52+08:00">
+                2017-09-14
               </time>
             
 
@@ -327,8 +327,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/迁移/" itemprop="url" rel="index">
-                    <span itemprop="name">迁移</span>
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
                   </a>
                 </span>
 
@@ -345,9 +345,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/06/12/Rails5-1使用jquery/#comments" itemprop="discussionUrl">
+                <a href="/2017/09/14/升级Create-React-App的项目/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/06/12/Rails5-1使用jquery/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/09/14/升级Create-React-App的项目/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -355,7 +355,7 @@
 
           
           
-             <span id="/2017/06/12/Rails5-1使用jquery/" class="leancloud_visitors" data-flag-title=" Rails5.1使用jquery">
+             <span id="/2017/09/14/升级Create-React-App的项目/" class="leancloud_visitors" data-flag-title="升级Create React App的项目">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -391,21 +391,81 @@
       
 
       
-        <p><code>rails5.1</code>的变化还真是大,对于<code>js</code>的拥抱很友好.<br><a href="http://weblog.rubyonrails.org/2017/2/23/Rails-5-1-beta1/" target="_blank" rel="external">Rails5.1变化</a></p>
+        <p>为了实现路由按需加载,因为触及到版本的相关问题(<a href="https://github.com/xiaohesong/react_blog/wiki/code-splitting" target="_blank" rel="external">版本详情</a>),所以本着折腾的原则,想去尝试升级一下,也是为了以后实践项目多知道几个坑吧.</p>
+<p>情况是这的,之前也不知道版本信息的要求,直接在电脑上开搞了.用的官方的<code>create-react-app</code>.</p>
+<ul>
+<li><p>升级前的相关环境</p>
 <ol>
-<li>前端的管理工具,类似<code>bundler</code>.</li>
+<li><code>node -v</code> =&gt; 4.几的忘记了</li>
+<li><code>npm -v</code> =&gt; 3.几的忘记了.</li>
+<li><code>webpack version</code> =&gt; 1.14.0</li>
+<li><code>react-router-dom</code> =&gt; 4.2.2</li>
+<li><code>react-scripts</code> =&gt; 0.9.x</li>
 </ol>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rake <span class="symbol">yarn:</span>install</div></pre></td></tr></table></figure>
-<p>ps : <a href="https://github.com/creationix/nvm#install-script" target="_blank" rel="external">安装node</a><br>ps : <a href="https://yarnpkg.com/lang/en/docs/install/#linux-tab" target="_blank" rel="external">安装yarn</a></p>
-<ol>
-<li>利用<code>yarn</code>添加<code>juqery</code></li>
-</ol>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yarn add jquery</div></pre></td></tr></table></figure>
-<ol>
-<li><code>application.js</code>如下<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/<span class="regexp">/= require jquery</span></div><div class="line"><span class="regexp">/</span><span class="regexp">/= require jquery_ujs</span></div><div class="line"><span class="regexp">...</span></div></pre></td></tr></table></figure>
 </li>
+<li><p>升级后的环境.</p>
+<ol>
+<li><code>node -v</code> =&gt; 6.1.0</li>
+<li><code>npm -v</code> =&gt; 4.6.1</li>
+<li><code>webpack version</code> =&gt; 3.5.6</li>
+<li><code>react-router-dom</code> =&gt; 4.2.2</li>
+<li><code>react-scripts</code> =&gt; 1.0.x(3)</li>
 </ol>
-<h4 id="blog原文"><a href="#blog原文" class="headerlink" title="blog原文"></a><a href="http://blog.csdn.net/hesonggg/article/details/73089436" target="_blank" rel="external">blog原文</a></h4>
+</li>
+</ul>
+<p>咋说呢,其实升级也还好,<a href="https://github.com/facebookincubator/create-react-app/releases" target="_blank" rel="external">按照官方的来就好了</a>.</p>
+<p>但是,因为项目里使用了antd.三月份的时候,想接触学习<code>react</code>,就写了一个<code>Todo</code>并引入了<code>ant-design</code>.搁浅了几个月,这几天要做一个权限管理的<code>demo</code>. 所以现在的这个<code>demo</code>就按照之前的那个配置来了.那个时候是需要暴露出配置去修改.<a href="https://ant.design/docs/react/use-with-create-react-app-cn" target="_blank" rel="external">现在官方文档已经修改了</a>.<br>因为<code>eject</code>操作是不可逆的,而且作为一个新手,也是尽量避免暴露配置文件的.</p>
+<p>可以发现<code>create-react-app</code>的升级文档也有强调,未<code>eject</code>的情况下.并且也在<code>issue</code>里说明了,不会提供任何帮助如果你暴露出来了配置.</p>
+<blockquote>
+<p>Note that we don’t provide help for webpack questions after ejecting.<br>    You can find webpack docs at <a href="https://webpack.js.org/" target="_blank" rel="external">https://webpack.js.org/</a>.</p>
+</blockquote>
+<h4 id="升级操作"><a href="#升级操作" class="headerlink" title="升级操作."></a>升级操作.</h4><ul>
+<li>备忘</li>
+<li><p>切换分支</p>
+<p>切换到一个新的分支去处理升级情况.</p>
+</li>
+<li><p>拷贝现有配置,以防万一.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cp package.json backup-package.json</div><div class="line">cp yarn.lock backup-yarn.lock</div></pre></td></tr></table></figure>
+</li>
+<li><p>替换需要的版本</p>
+<p>找到你需要的版本的升级说明,去初始化一个新的项目(example).<a href="https://github.com/facebookincubator/create-react-app/releases/tag/v1.0.0" target="_blank" rel="external">我需要的版本是1.0.0</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">npm install --save-dev --save-exact react-scripts@1.0.0</div><div class="line">npm install -g create-react-app</div><div class="line">create-react-app example</div></pre></td></tr></table></figure>
+<p>初始化项目之后,就有一个现成的你需要的版本了.<br>我们来替换一些相关的配置信息.</p>
+<ul>
+<li><p><code>config</code>文件夹<br>由于我的暴露出了配置信息,所以我需要把<code>~/my_project/config</code>给替换成新的版本配置.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rm -rf ~/my_project/config</div><div class="line">cp -r ~/example/config/ ~/my_project/</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>scripts</code>文件夹</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rm -rf ~/my_project/scripts</div><div class="line">cp -r ~/example/scripts/ ~/my_project/</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>package.json</code><br>这个是<code>npm init</code>的产物.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp ~/example/package.json ~/my_project/</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>注意,<code>package.json</code>里有一个地方需要改动,就是<code>name</code>,换成你的项目的名字.比如 <code>example =&gt; my_project</code>.</p>
+</li>
+<li><p>重新安装.<br>这里就基本把项目配置换成了新的,那么就需要重新安装相关的插件.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~/my_project</div><div class="line">rm -rf node_modules</div><div class="line">npm cache clean</div><div class="line">npm install</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这里就把相关的重新安装了,那么我们也需要把项目之前的第三方库安装上去.<br>我的比较简单,只有<code>react-router-dom</code>,<code>antd</code>,<code>webpack</code>.</p>
+<ul>
+<li><p>番外</p>
+<ul>
+<li><p>遇到的问题</p>
+<ul>
+<li><p><code>Import in body of module; reorder to top import/first</code><br> 我的这个错误主要是<code>css</code>文件的问题.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">import A from &apos;../A.css&apos;</div><div class="line">import A from &apos;../A&apos; // A.js</div><div class="line">//改成下面这样</div><div class="line">import A from &apos;../A&apos; // A.js</div><div class="line">import A from &apos;../A.css&apos;</div></pre></td></tr></table></figure>
+<p> <code>ESLint</code>的原因.</p>
+</li>
+<li><p>法子引入<code>antd</code><br>现在的官网的方式没法子引入<code>antd</code>,或许是因为暴露出了配置的原因吧.<br>使用的依然是<code>eject</code>之后的法子.<a href="https://github.com/xiaohesong/react_blog/wiki/How-To-Use-Ant-Design" target="_blank" rel="external">稍有变动</a></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="原文链接"><a href="#原文链接" class="headerlink" title="原文链接"></a><a href="https://github.com/xiaohesong/react_blog/wiki/Upgrade-Create-react-app" target="_blank" rel="external">原文链接</a></h4>
       
     </div>
     
@@ -422,7 +482,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/rails/" rel="tag"># rails</a>
+            <a href="/tags/react/" rel="tag"># react</a>
+          
+            <a href="/tags/create-react-app/" rel="tag"># create-react-app</a>
           
         </div>
       
@@ -435,8 +497,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/26/rails4-actioncable/" rel="next" title="rails4 actioncable">
-                <i class="fa fa-chevron-left"></i> rails4 actioncable
+              <a href="/2017/08/17/docker-daocloud-rails部署管理/" rel="next" title="docker+daocloud+rails部署管理">
+                <i class="fa fa-chevron-left"></i> docker+daocloud+rails部署管理
               </a>
             
           </div>
@@ -444,10 +506,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/04/build-hexo/" rel="prev" title="Build Hexo">
-                Build Hexo <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -636,7 +694,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#blog原文"><span class="nav-number">1.</span> <span class="nav-text">blog原文</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#升级操作"><span class="nav-number">1.</span> <span class="nav-text">升级操作.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原文链接"><span class="nav-number">2.</span> <span class="nav-text">原文链接</span></a></li></ol></div>
             
 
           </div>
@@ -793,9 +851,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/06/12/Rails5-1使用jquery/';
-          this.page.identifier = '2017/06/12/Rails5-1使用jquery/';
-          this.page.title = ' Rails5.1使用jquery';
+          this.page.url = 'http://yoursite.com/2017/09/14/升级Create-React-App的项目/';
+          this.page.identifier = '2017/09/14/升级Create-React-App的项目/';
+          this.page.title = '升级Create React App的项目';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://issue.disqus.com/embed.js';
