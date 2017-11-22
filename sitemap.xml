@@ -16,6 +16,20 @@
   </url>
   
   <url>
+    <loc>http://yoursite.com/2017/03/31/docker-rails-postgresql-redis-puma-nginx/</loc>
+    
+    <lastmod>2017-08-10T04:26:00.820Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/11/16/Rails-Middleware/</loc>
+    
+    <lastmod>2017-08-10T04:26:00.820Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/08/26/rails-capistrano-nginx-puma%E9%83%A8%E7%BD%B2/</loc>
     
     <lastmod>2017-08-10T04:26:00.820Z</lastmod>
@@ -37,7 +51,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2016/11/16/%E4%BD%BF%E7%94%A8sinatra%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84crud%E5%8A%9F%E8%83%BD/</loc>
+    <loc>http://yoursite.com/2017/05/26/rails4-actioncable/</loc>
     
     <lastmod>2017-08-10T04:26:00.820Z</lastmod>
     
@@ -51,21 +65,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2017/03/31/docker-rails-postgresql-redis-puma-nginx/</loc>
-    
-    <lastmod>2017-08-10T04:26:00.820Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/05/26/rails4-actioncable/</loc>
-    
-    <lastmod>2017-08-10T04:26:00.820Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2016/11/16/Rails-Middleware/</loc>
+    <loc>http://yoursite.com/2016/11/16/%E4%BD%BF%E7%94%A8sinatra%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84crud%E5%8A%9F%E8%83%BD/</loc>
     
     <lastmod>2017-08-10T04:26:00.820Z</lastmod>
     
