@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="react,redux,redux-thunk," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Here" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="正式接触react应该有两个月了,项目开始也有一个月了,开始新项目的时候就没有打算使用redux,因为感觉学习这个的成本挺高.这两天,项目第一版已经出来了,昨天下午有时间就抓紧时间看看redux相关的东西,大致有个了解,然后今天就照葫芦画瓢,把一个模块给整理了下,换成了redux.在这里记录下使用,以备后需. react-redux使用前得需要安装1npm i --save react-redux">
+<meta name="keywords" content="react,redux,redux-thunk">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react-redux的简单使用">
+<meta property="og:url" content="http://yoursite.com/2017/12/01/react-redux的简单使用/index.html">
+<meta property="og:site_name" content="Here">
+<meta property="og:description" content="正式接触react应该有两个月了,项目开始也有一个月了,开始新项目的时候就没有打算使用redux,因为感觉学习这个的成本挺高.这两天,项目第一版已经出来了,昨天下午有时间就抓紧时间看看redux相关的东西,大致有个了解,然后今天就照葫芦画瓢,把一个模块给整理了下,换成了redux.在这里记录下使用,以备后需. react-redux使用前得需要安装1npm i --save react-redux">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-01T07:32:33.078Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="react-redux的简单使用">
+<meta name="twitter:description" content="正式接触react应该有两个月了,项目开始也有一个月了,开始新项目的时候就没有打算使用redux,因为感觉学习这个的成本挺高.这两天,项目第一版已经出来了,昨天下午有时间就抓紧时间看看redux相关的东西,大致有个了解,然后今天就照葫芦画瓢,把一个模块给整理了下,换成了redux.在这里记录下使用,以备后需. react-redux使用前得需要安装1npm i --save react-redux">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/01/react-redux的简单使用/"/>
+
+
+
+
+
+  <title>react-redux的简单使用 | Here</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Here</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">xiaohesong's blogs</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            目录
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/01/react-redux的简单使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiaohesong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Here">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">react-redux的简单使用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-01T15:31:17+08:00">
+                2017-12-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/01/react-redux的简单使用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/12/01/react-redux的简单使用/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/12/01/react-redux的简单使用/" class="leancloud_visitors" data-flag-title="react-redux的简单使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>正式接触react应该有两个月了,项目开始也有一个月了,<br>开始新项目的时候就没有打算使用redux,因为感觉学习这个的成本挺高.<br>这两天,项目第一版已经出来了,昨天下午有时间就抓紧时间看看redux相关的东西,大致有个了解,然后今天就照葫芦画瓢,把一个模块给整理了下,换成了redux.<br>在这里记录下使用,以备后需.</p>
+<h3 id="react-redux"><a href="#react-redux" class="headerlink" title="react-redux"></a>react-redux</h3><p>使用前得需要安装<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm i --save react-redux redux redux-thunk</div></pre></td></tr></table></figure></p>
+<ol>
+<li>先创建actions<br>获取用户列表的相关操作.<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/actions/users/index.js</span></div><div class="line"><span class="keyword">import</span> * <span class="keyword">as</span> usersTypes <span class="keyword">from</span> <span class="string">'../../constants/users/ActionTypes'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> queryUsersSuccess = <span class="function"><span class="params">users</span> =&gt;</span> (&#123; <span class="attr">type</span>: usersTypes.QUERY_USERS_SUCCESS, users &#125;)</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> queryUsers = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="params">dispatch</span> =&gt;</span> &#123;</div><div class="line">    MyFetch.get(<span class="string">`v1/users`</span>).then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</div><div class="line">      dispatch(queryUsersSuccess(data.users))</div><div class="line">    &#125;)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// MyFetch.js</span></div><div class="line"><span class="keyword">import</span> &#123; message &#125; <span class="keyword">from</span> <span class="string">'antd'</span>;</div><div class="line"><span class="keyword">const</span> API_URL = process.env.REACT_APP_DEV_API_URL</div><div class="line"><span class="keyword">var</span> Fetch = &#123;</div><div class="line">    get(path) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</div><div class="line">            fetch(<span class="string">`<span class="subst">$&#123;API_URL&#125;</span>/<span class="subst">$&#123;path&#125;</span>`</span>, &#123;</div><div class="line">                headers: <span class="keyword">new</span> Headers(&#123;</div><div class="line">                    <span class="string">'token'</span>: localStorage.getItem(<span class="string">"my-custom-token"</span>),</div><div class="line">                    <span class="string">'Accept'</span>: <span class="string">'application/json'</span>,</div><div class="line">                    <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span>,</div><div class="line">                &#125;)</div><div class="line">            &#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</div><div class="line">                <span class="keyword">return</span> handleStatus(res);</div><div class="line">            &#125;)</div><div class="line">                .then(<span class="function"><span class="params">json</span> =&gt;</span> &#123;</div><div class="line">                    resolve(json);</div><div class="line">                &#125;)</div><div class="line">                .catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</div><div class="line">                    reject(err);</div><div class="line">                &#125;);</div><div class="line">        &#125;);</div><div class="line">    &#125;,</div><div class="line">    post(params) &#123;&#125;,</div><div class="line">    ...</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleStatus</span>(<span class="params">res</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> errors;</div><div class="line">    <span class="keyword">switch</span> (res.status) &#123;</div><div class="line">        <span class="keyword">case</span> <span class="number">200</span>:</div><div class="line">            <span class="keyword">return</span> res.json();</div><div class="line">        <span class="keyword">case</span> <span class="number">500</span>:</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">"500错误"</span>);</div><div class="line">            message.error(<span class="string">'服务器内部错误'</span>, <span class="number">5</span>)</div><div class="line">            errors = <span class="string">`<span class="subst">$&#123;res.status&#125;</span>, <span class="subst">$&#123;res.statusText&#125;</span>`</span></div><div class="line">            <span class="keyword">throw</span> errors</div><div class="line">        <span class="keyword">case</span> <span class="number">404</span>:</div><div class="line">            message.error(<span class="string">"资源不存在"</span>, <span class="number">5</span>)</div><div class="line">            errors = <span class="string">`<span class="subst">$&#123;res.status&#125;</span>, <span class="subst">$&#123;res.statusText&#125;</span>`</span></div><div class="line">            <span class="keyword">throw</span> errors</div><div class="line">        <span class="keyword">case</span> <span class="number">401</span>:</div><div class="line">            message.error(<span class="string">"登录会话过期,请重新登录"</span>, <span class="number">5</span>)</div><div class="line">            localStorage.removeItem(<span class="string">"my-custom-token"</span>)</div><div class="line">            <span class="built_in">window</span>.location.href = <span class="string">'/login'</span></div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> <span class="number">403</span>:</div><div class="line">            message.error(<span class="string">"无权限访问"</span>, <span class="number">5</span>)</div><div class="line">            errors = <span class="string">`<span class="subst">$&#123;res.status&#125;</span>, <span class="subst">$&#123;res.statusText&#125;</span>`</span></div><div class="line">            <span class="keyword">throw</span> errors</div><div class="line">      <span class="keyword">default</span>:</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li><p>创建constants</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/constants/users/ActionTypes.js</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> QUERY_USERS = <span class="string">'QUERY_USERS'</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> QUERY_USERS_SUCCESS = <span class="string">"QUERY_USERS_SUCCESS"</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>创建 reducers相关</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/reducers/users.js</span></div><div class="line"><span class="keyword">import</span> &#123;QUERY_USERS_SUCCESS&#125; <span class="keyword">from</span> <span class="string">"../constants/users/ActionTypes"</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> initState = &#123;</div><div class="line">  users: []</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">users</span>(<span class="params">state = initState, action</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"Welcome to reducer users"</span>);</div><div class="line">    <span class="keyword">switch</span> (action.type) &#123;</div><div class="line">        <span class="keyword">case</span> QUERY_USERS_SUCCESS:</div><div class="line">          <span class="keyword">return</span> &#123;</div><div class="line">            ...state,</div><div class="line">            users: action.users</div><div class="line">          &#125;</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            <span class="keyword">return</span> state</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/reducers/index.js</span></div><div class="line"><span class="keyword">import</span> &#123; combineReducers &#125; <span class="keyword">from</span> <span class="string">'redux'</span></div><div class="line"></div><div class="line"><span class="comment">//BASE API</span></div><div class="line"><span class="keyword">import</span> users <span class="keyword">from</span> <span class="string">'./users'</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> rootReducer = combineReducers(&#123;</div><div class="line">  users,</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> rootReducer</div></pre></td></tr></table></figure>
+<p>这里创建了相关的reducers.</p>
+<ol>
+<li>在根组件store<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/index.js</span></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Provider &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span></div><div class="line"><span class="keyword">import</span> configureStore <span class="keyword">from</span> <span class="string">'./configureStore'</span>;</div><div class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span>;</div><div class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span>;</div><div class="line"><span class="keyword">const</span> store = configureStore()</div><div class="line"></div><div class="line">ReactDOM.render(</div><div class="line">  &lt;Provider store=&#123;store&#125;&gt;</div><div class="line">    &lt;App /&gt;</div><div class="line">  &lt;<span class="regexp">/Provider&gt;,</span></div><div class="line"><span class="regexp">  document.getElementById('root')</span></div><div class="line"><span class="regexp">);</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/configureStore.js</span></div><div class="line"><span class="keyword">import</span> &#123;createStore, applyMiddleware&#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</div><div class="line"><span class="keyword">import</span> thunkMiddleware <span class="keyword">from</span> <span class="string">'redux-thunk'</span>;</div><div class="line"><span class="keyword">import</span> rootReducer <span class="keyword">from</span> <span class="string">'./reducers'</span>;</div><div class="line"></div><div class="line"><span class="comment">// let store = createStore(combineReducers);</span></div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">configureStore</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">const</span> store = createStore(</div><div class="line">        rootReducer,</div><div class="line">        applyMiddleware(thunkMiddleware)</div><div class="line">    );</div><div class="line"></div><div class="line">    <span class="keyword">return</span> store;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>connect<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/components/User.js</span></div><div class="line"><span class="keyword">import</span> * <span class="keyword">as</span> UserActions <span class="keyword">from</span> <span class="string">'../../actions/users'</span>;</div><div class="line">...</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</div><div class="line">  componentDidMount()&#123;</div><div class="line">       <span class="keyword">this</span>.props.actions.queryUsers();</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> mapStateToProps = <span class="function"><span class="params">state</span> =&gt;</span> (&#123;</div><div class="line">  company: state.companies,</div><div class="line">	users: state.users <span class="comment">//这个是reducers定义的</span></div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">const</span> mapDispatchToProps = <span class="function"><span class="params">dispatch</span> =&gt;</span> (&#123;</div><div class="line">    actions: bindActionCreators(UserActions, dispatch)</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> connect(</div><div class="line">  mapStateToProps,</div><div class="line">  mapDispatchToProps</div><div class="line">)(Company)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这样就可以使用啦.</p>
+<h4 id="本文原文"><a href="#本文原文" class="headerlink" title="本文原文"></a><a href="https://github.com/xiaohesong/ums/wiki/Redux%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93#react-redux" target="_blank" rel="external">本文原文</a></h4><p>ps: 目前看来,这个方法很low. 在action写了请求接口的方法,觉得不是很规范,后需会改进.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/react/" rel="tag"># react</a>
+          
+            <a href="/tags/redux/" rel="tag"># redux</a>
+          
+            <a href="/tags/redux-thunk/" rel="tag"># redux-thunk</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/01/React封装Fetch获取Api-父组件与子组件的通讯/" rel="next" title="React封装Fetch获取Api, 父组件与子组件的通讯">
+                <i class="fa fa-chevron-left"></i> React封装Fetch获取Api, 父组件与子组件的通讯
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/01/react-thunk迁到redux-saga-他们的对比/" rel="prev" title="react-thunk迁到redux-saga,他们的对比">
+                react-thunk迁到redux-saga,他们的对比 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="xiaohesong" />
+          <p class="site-author-name" itemprop="name">xiaohesong</p>
+           
+              <p class="site-description motion-element" itemprop="description">相信自己,认为自己是对的,那就继续下去!</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xiaohesong" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Github
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/hesongGG" target="_blank" title="Blog">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Blog
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#react-redux"><span class="nav-number">1.</span> <span class="nav-text">react-redux</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#本文原文"><span class="nav-number">1.1.</span> <span class="nav-text">本文原文</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xiaohesong</span>
+</div>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      您是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      个同学
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://issue.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/12/01/react-redux的简单使用/';
+          this.page.identifier = '2017/12/01/react-redux的简单使用/';
+          this.page.title = 'react-redux的简单使用';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://issue.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("Fq4dc8p8z538yhNuMyjuWMVl-gzGzoHsz", "Itm6LboIAIEtNXBPHIz3pmXs");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
