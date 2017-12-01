@@ -12,7 +12,7 @@ tags:
 - [父子组件的通讯](#父子组件的通讯)
 
 ### 封装Fetch
-```es6
+```javascript
 // MyFetch.js
 const API_URL = process.env.REACT_APP_DEV_API_URL
 var methods = {
@@ -50,7 +50,7 @@ export default methods
 ```
 
 调用的时候也很简单.
-```es6
+```javascript
 import MyFetch from './MyFetch';
 MyFetch.get(users).then(data => {
   console.log("respond data is", data)
@@ -61,7 +61,7 @@ MyFetch.get(users).then(data => {
 
 ### 父子组件的通讯
 - 父组件传递数据到子组件.
-```es6
+```javascript
 import React, {Component} from 'react';
 
 export default class Parent extends Component{
@@ -83,7 +83,7 @@ export default class Child extends Component {
 
 - 子组件传递数据到父组件
 
-```es6
+```javascript
 import React, {Component} from 'react';
 
 export default class Parent extends Component{
@@ -116,7 +116,7 @@ export default class Child extends Component {
 #### 需要注意: 父组件加载子组件,子组件的构造函数只会执行一次.
 如果父组件(容器组件)获取远程数据,传递到子组件,不要在子组件的状态里写入数据.直接使用props.data去获取.
 举例如下:
-```es6
+```javascript
 import React, {Component} from 'react';
 
 export default class Parent extends Component{
